@@ -1,0 +1,19 @@
+<div class="sm-card-list-layout projects">
+  <ng-content></ng-content>
+  <ng-container *ngFor="let project of projects; let last=last">
+    <sm-project-card
+      (deleteProjectClicked)="deleteProjectClicked.emit($event)"
+      (projectCardClicked)="projectCardClicked.emit($event)"
+      (newProjectClicked)="createNewProjectClicked.emit($event)"
+      (projectNameChanged)="projectNameChanged.emit({project: project.id, name:$event})"
+      (moveToClicked)="moveToClicked.emit($event)"
+      *ngIf="!last || (last && noMoreProjects)"
+      [hideMenu]="['All Experiments'].includes(project.name) || project.isRoot || isExample(project)"
+      [project]="project">
+    </sm-project-card>
+  </ng-container>
+
+  <div class="load-more" *ngIf="!noMoreProjects && projects?.length > pageSize">
+    <button (click)="loadMore.emit()" class="btn btn-primary load-more-btn">LOAD MORE</button>
+  </div>
+</div>

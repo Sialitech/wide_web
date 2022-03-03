@@ -1,0 +1,25 @@
+<div class="graph-container">
+  <div class="graph-title">Hyper Parameters Impact on {{metric.name}}</div>
+  <div #parallelGraph>
+  </div>
+  <div class="d-flex legend-container">
+    <div *ngFor="let experiment of experiments" class="experiment-name">
+      <span class="dot-container">
+        <span #dot class="dot pallete-cursor"
+              [style.background-color]="experimentsColors[experiment.id]"
+              smChooseColor [colorButtonRef]="dot"
+              [defaultColor]="experimentsColors[getExperimentNameForColor(experiment)]"
+              [stringToColor]="getExperimentNameForColor(experiment)">
+        </span>
+      </span>
+      <span
+        class="task-name pointer"
+        (click)="toggleHideExperiment(experiment.id)"
+        (mouseover)="highlightExperiment(experiment)"
+        (mouseout)="removeHighlightExperiment()"
+        [class.hide]="experiment.hidden">
+        {{experiment.name + (experiment.duplicateName ? ('.' + (experiment.id|slice:0:5)) : '')}}
+      </span>
+    </div>
+  </div>
+</div>

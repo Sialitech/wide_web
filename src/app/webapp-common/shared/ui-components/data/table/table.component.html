@@ -1,0 +1,145 @@
+<p-table
+  class="table"
+  dataKey="id"
+  [filterDelay]="0"
+  [globalFilterFields]="enableTableSearch? globalFilterFields: null"
+  [scrollHeight]="'flex'"
+  [autoLayout]="false"
+  [columns]="columns"
+  [selectionMode]="selectionMode"
+  [rows]="rowsNumber"
+  [value]="tableData"
+  [selection]="selection"
+  [reorderableColumns]="reorderableColumns"
+  [resizableColumns]="resizableColumns && !minView"
+  columnResizeMode="expand"
+  [scrollable]="scrollable || resizableColumns"
+  [virtualScroll]="virtualScroll"
+  [virtualRowHeight]="minView ? cardHeight : rowHeight"
+  (onColReorder)="onColReorder($event)"
+  [first]="first"
+  [rowHover]="true"
+  [contextMenu]="cm"
+  (firstChange)="onFirstChanged($event)"
+  (onSort)="onSortChanged($event)"
+  (onRowSelect)="onRowSelected($event)"
+  (onRowUnselect)="onRowDeselected($event)"
+  (onContextMenuSelect)="openContext($event)"
+  (onColResize)="colResize($event)"
+  [rowTrackBy]="trackByFunction"
+>
+  <ng-template pTemplate="emptymessage">
+    <tr class="no-data-row">
+      <div [attr.colspan]="columns.length" [class.simple]="simple">
+        <div class="no-data" [style.margin-left.px]="buttonLeft">{{noDataMessage}}</div>
+      </div>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns *ngIf="!noHeader">
+    <tr class="header ui-state-default" *ngIf="!minView; else cardHeader">
+      <th *ngFor="let col of columns; trackBy: trackByColFn"
+          [attr.data-col-id]="col.id"
+          pReorderableColumn
+          smResizableColumn
+          [pResizableColumnDisabled]="col?.disableDrag"
+          [pReorderableColumnDisabled]="!reorderableColumns || col?.disableDrag"
+          [class.disable-drag]="!reorderableColumns || col?.disableDrag"
+          [class.resize-enabled]="resizableColumns"
+          [class.resize-disabled]="!resizableColumns"
+          [class.selected-col-header]="col?.disablePointerEvents"
+          [style.min-width]="col.style?.minWidth"
+          [style.max-width]="col.style?.maxWidth"
+          [style.flex-basis]="col.style?.width"
+      >
+        <ng-container [ngSwitch]="col?.headerType">
+          <ng-container *ngSwitchCase="ColHeaderTypeEnum.sortFilter">
+            <ng-container *ngTemplateOutlet="sortFilterTemplate; context: {$implicit: col}"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="ColHeaderTypeEnum.checkBox">
+            <ng-container *ngTemplateOutlet="checkboxTemplate; context: {$implicit: col}"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <div class="col-header" [class.text-center]="col.textCenter">{{col.header}}</div>
+          </ng-container>
+        </ng-container>
+      </th>
+    </tr>
+    <ng-template #cardHeader>
+      <tr class="header">
+        <th class="table-header" style="flex-basis:100%">
+          <div class="table-header-title">{{minimizedTableHeader}}</div>
+          <div class="table-actions">
+            <div class="recent-title">
+              <sm-menu header="SORTED BY " class="menu">
+                <div *ngFor="let col of sortableCols">
+                  <sm-menu-item [itemLabel]="col.header"
+                                [sortOrder]="getOrder(col.id)"
+                                (itemClicked)="sortItemClick($event, col.id)"></sm-menu-item>
+                </div>
+              </sm-menu>
+            </div>
+            <ng-container *ngTemplateOutlet="cardHeaderTemplate"></ng-container>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+    <tr
+      [pSelectableRow]="rowData"
+      [pContextMenuRow]="rowData"
+      [style.height.px]="minView ? this.cardHeight : this.rowHeight"
+      [class.even]="(index + 1) % 2 === 0"
+      [class.checked]="isRowSelected(rowData)"
+      [class.simple]="simple"
+      [class.contexted]="activeContextRow?.id ===rowData?.id && contextMenuOpen"
+      [class.selected]="selectionMode==='single'? selection?.id === rowData?.id : selection?.includes(rowData)"
+      [class.cards-table]="minView"
+      [class.pointer]="!!selectionMode"
+      (click)="!minView && rowClicked.emit({e: $event, data: rowData})"
+    >
+      <ng-container *ngIf="!minView; else cardBody">
+        <td
+          *ngFor="let col of columns; trackBy: trackByColFn; index as i"
+          [class.ui-resizable-column]="resizableColumns"
+          [class.simple]="simple"
+          [style.min-width]="col.style?.minWidth"
+          [style.max-width]="col.style?.maxWidth"
+          [style.flex-basis]="col.style?.width"
+        >
+          <ng-container *ngIf="bodyTemplate">
+            <ng-container *ngTemplateOutlet="bodyTemplate; context: {$implicit: col, rowData: rowData, rowIndex: index}">
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="!bodyTemplate">
+            {{getBodyData(rowData, col)}}
+          </ng-container>
+        </td>
+      </ng-container>
+     <ng-template #cardBody>
+        <td class="pointer p-0" role="button">
+          <ng-container
+            *ngTemplateOutlet="cardTemplate;  context: {rowData: rowData, rowNumber: index, selected:  (selectionMode==='single'? selection?.id === rowData.id :  selection?.includes(rowData))}">
+          </ng-container>
+        </td>
+      </ng-template>
+    </tr>
+    <tr *ngIf="index === rowsNumber - 1 && lazyLoading && !noMoreData" class="table-load-more">
+      <div class="load-more-wrapper">
+        <button #loadButton
+                class="btn btn-primary"
+                (click)="loadMore()"
+                [style.margin-left.px]="buttonLeft">
+          <i *ngIf="loading" class="load-spinner"></i>
+          {{loading ? 'LOADING...' : 'LOAD MORE' }}
+        </button>
+      </div>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer" let-columns>
+    <ng-container *ngTemplateOutlet="footerTemplate">
+    </ng-container>
+  </ng-template>
+</p-table>
+<p-contextMenu #cm [model]="menuItems" class="d-none"></p-contextMenu>

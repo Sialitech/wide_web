@@ -1,0 +1,164 @@
+@import "../../shared/ui-components/styles/variables.scss";
+
+span {
+  font-size: 15px;
+}
+
+:host {
+  display: flex;
+  align-items: center;
+
+  .menu-trigger {
+    width: 34px;
+
+    .menu-trigger-icon {
+      height: 100%;
+      color: $blue-100;
+    }
+  }
+
+  .feature-tag {
+    color: #d3fd00;
+    font-size: 12px;
+    height: 18px;
+    margin: 4px 0 4px 6px;
+    padding: 0 6px;
+    border-radius: 9px;
+    background-color: #364164;
+  }
+}
+
+
+.sub-project-menu-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: $blue-900;
+}
+
+.breadcrumbLink a, .breadcrumbLink span, .workspace {
+  max-width: 700px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $blue-100;
+  font-weight: 400;
+  display: inline-block;
+  height: 100%;
+}
+
+.workspace {
+  max-width: 400px;
+}
+
+.breadcrumbLink {
+  height: 22px;
+  display: flex;
+  align-items: center;
+
+  i {
+    color: $blue-400;
+    line-height: 22px;
+  }
+}
+
+.breadcrumbLink:first-of-type a {
+  text-transform: uppercase;
+}
+
+.breadcrumbLink:last-of-type a:not(.sub-project) {
+  pointer-events: none;
+  cursor: default;
+  font-weight: bold;
+  color: white;
+}
+
+.share {
+  color: #00e3b9;
+  border: 1px solid #00e3b9;
+  height: 22px;
+  width: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-left: 12px;
+}
+
+.close-icon {
+  margin-left: auto;
+}
+
+.share-menu-container {
+  width: 430px;
+  padding: 24px
+}
+
+.link-box {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  width: 372px;
+  height: 36px;
+  border-radius: 4px;
+  border: solid 1px $cloudy-blue-two;
+  font-size: 14px;
+  color: #404040;
+  margin: 2px 0 24px;
+}
+
+.share-link-container {
+  &.hidden {
+    visibility: hidden;
+  }
+
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  border: solid 1px $cloudy-blue-two;
+  height: 36px;
+
+  .share-link {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #404040;
+    padding: 12px;
+    flex: 1;
+  }
+
+  .copy {
+    padding: 12px;
+    display: flex;
+    flex: 0 0 36px;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-left: solid 1px $cloudy-blue-two;
+    color: $blue-400;
+
+    :active {
+      color: $blue-700;
+    }
+  }
+}
+
+.share-title {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  color: #1a1e2b;
+}
+
+.top {
+  margin-bottom: 17px;
+}
+
+.copy-title {
+  font-size: 12px;
+  color: $blue-400;
+}
+
+.close-dialog {
+  color: #8491c2;
+  font-size: 20px;
+}

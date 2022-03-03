@@ -1,0 +1,66 @@
+@import "../../../../webapp-common/shared/ui-components/styles/variables";
+
+:host {
+  .worker-info-container {
+    padding: 12px 0;
+  }
+
+  ::ng-deep .table-row {
+    line-height: unset !important;
+    height: 40px;
+    background-color: $blue-800 !important;
+    border-bottom: 1px solid #303443 !important;
+  }
+
+  ::ng-deep .row.headers {
+    line-height: 48px !important;
+    border-bottom: 1px solid #303443 !important;
+    color: $blue-400;
+  }
+
+  //.queues-table-container {
+  //  padding: 0 20px;
+  //}
+
+  .tabs-container {
+    position: relative;
+    background-color: $blue-800;
+    border-bottom: 1px solid #303443;
+    margin: 12px 0 0 0;
+    height: 38px;
+
+    ::ng-deep .navbar-item {
+      height: 100%;
+      padding: 0 15px;
+      margin: 0 1px;
+    }
+  }
+
+  .pull-right {
+    position: absolute;
+    right: 24px;
+    top: 0;
+  }
+
+  .id-cell {
+    .value {
+      flex: 1;
+    }
+
+    .copy-btn {
+      min-width: 30px;
+      margin-left: 5px;
+      visibility: hidden;
+
+      ::ng-deep .btn {
+        padding: 0;
+      }
+    }
+
+    &:hover {
+      .copy-btn {
+        visibility: visible;
+      }
+    }
+  }
+}

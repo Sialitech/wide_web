@@ -1,0 +1,113 @@
+:host {
+  display: block;
+  position: relative;
+  height: 100%;
+
+  .single-graph {
+    position: relative;
+  }
+
+  ::ng-deep .single-graph sm-single-graph {
+    margin-left: auto;
+    margin-right: auto;
+
+    .whitebg {
+      border: none;
+    }
+  }
+
+  sm-single-graph {
+    width: 100%;
+
+    &.two-in-a-row {
+      width: 50%;
+    }
+  }
+
+  .metrics-section {
+    height: 100%;
+    overflow-y: hidden;
+
+    &.with-settings {
+      height: calc(100% - 64px);
+    }
+
+    .disable-graphs-interactive {
+      pointer-events: none;
+    }
+  }
+
+  .all-metrics {
+    height: 100%;
+    padding: 0px;
+    overflow-y: scroll;
+  }
+
+  .metric-group-container {
+    padding-bottom: 20px;
+    width: 100%;
+
+    &.two-in-a-row {
+      width: 50%;
+    }
+
+    .less-padding {
+      padding: 0;
+    }
+
+    &.less-padding {
+      padding: 0 !important;
+    }
+
+    .less-padding:last-child {
+      margin-bottom: 20px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 20px;
+    }
+
+    &:not(:first-of-type) .metric-group-header {
+      margin-top: 20px;
+      border-top: 1px solid #efefef;
+    }
+  }
+
+  .metric-group-header {
+    flex-basis: 100%;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #efefef;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  sm-graph-settings-bar {
+    overflow: hidden;
+    height: auto;
+    max-height: 0;
+    padding: 0 25px 0 22px;
+    background-color: #f2f3f6;
+    transition: max-height 0.3s;
+
+    &.showSettings {
+      padding-top: 7px ;
+      min-height: 64px;
+      max-height: 128px;
+    }
+  }
+  .resize-overlay{
+    position: absolute;
+    z-index: 13;
+    top: 0;
+    left: 0;
+
+    &.active {
+      bottom: 0;
+      right: 0;
+    }
+  }
+}

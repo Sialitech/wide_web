@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-between mb-2">
+  <span class="font-weight-bold">{{titleLabel}}</span>
+</div>
+<sm-search
+  [value]="searchText"
+  class="underline-search"
+  [minimumChars]="0"
+  [debounceTime]="0"
+  [placeholder]="placeholder"
+  (valueChanged)="onSearchTermChanged($event)"
+></sm-search>
+<span class="toggle-all-text" (click)="toggleHideAll()">{{checkedList.length > 0 ? 'Show all' : 'Hide all'}} </span>
+<sm-selectable-list
+  [list]="filteredList"
+  [selected]="selected"
+  [checkedList]="checkedList"
+  (onItemSelect)="itemSelect.emit($event)"
+  (onItemCheck)="toggleHide($event)"
+>
+</sm-selectable-list>

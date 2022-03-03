@@ -1,0 +1,74 @@
+<div class="filter-sort-container d-flex align-items-center" [class.active]="value?.length > 0 || subValue?.length > 0">
+  <div class='d-flex pointer'>
+    <i class="sort-icon" [class]="enableSort?  'icon sm ' + sortedClass():''" (click)="switchSortOrder($event)"></i>
+  </div>
+  <ng-template #headerWithoutFilters>
+    <div [smTooltip]="tooltip ? header : undefined"
+         matTooltipPosition="above"
+         class="menu-button pointer"
+         [class.active]="isSorted"
+         (click)="enableSort && switchSortOrder($event)">{{header}}
+    </div>
+  </ng-template>
+  <ng-container *ngIf="enableFilter; else: headerWithoutFilters">
+    <div
+      (click)="enableSort && switchSortOrder($event)"
+      [class.pointer]="enableSort"
+      [smTooltip]="tooltip ? header : undefined"
+      matTooltipPosition="above"
+      class="ellipsis menu-button"
+      [class.active]="isSorted || isFiltered()">{{header}}</div>
+    <sm-menu #menu
+             smMenuClass="light-theme"
+             [enableSearch]="enableSearch"
+             [fixedOptionsSubheader]="subOptions?.length ? fixedOptionsSubheader : ''"
+             (searchValueChanged)="searchValueChanged.emit($any($event.target).value)"
+             [searchValue]="searchValue"
+             [buttonClass]="'table-filter-button ' + (isFiltered() ? 'active' : 'deactive')"
+             [iconClass]="'icon ' + (isFiltered()? 'i-filter-on':'i-filter-off')"
+             (menuClosed)="menuClosed.emit()"
+         (menuOpened)="menuOpened.emit()"
+    >
+      <ng-container [ngSwitch]="filterType">
+        <sm-table-filter-duration
+          *ngSwitchCase="FILTER_TYPE.duration"
+          [value]="value"
+          (filterChanged)="filterChanged.emit($event)"></sm-table-filter-duration>
+        <sm-table-filter-duration-numeric
+          *ngSwitchCase="FILTER_TYPE.durationNumeric"
+          [value]="value"
+          (filterChanged)="filterChanged.emit($event)"
+        ></sm-table-filter-duration-numeric>
+        <sm-table-filter-duration-date-time
+          *ngSwitchCase="FILTER_TYPE.durationDate"
+          [value]="value"
+          (filterChanged)="filterChanged.emit($event)"
+        ></sm-table-filter-duration-date-time>
+        <ng-container *ngSwitchDefault>
+          <div *ngIf="supportAndFilter" class="filter-type" smClickStopPropagation>
+            <span class="link mr-3" [class.selected]="!andFilter" (click)="toggleCombination()">Any</span>
+            <span class="link" [class.selected]="andFilter" (click)="toggleCombination()">All</span>
+          </div>
+          <div [class.options-section]="enableSearch" smClickStopPropagation class="d-flex align-items-start flex-column table-filter-sort-template checkbox-list">
+            <sm-checkbox-three-state-list
+              [supportExcludeFilter]="supportExcludeFilter"
+              [options]="options"
+              [checkedList]="value"
+              (filterChanged)="emitFilterChanged($event)"
+            ></sm-checkbox-three-state-list>
+            <div fixedOptions>
+              <sm-menu-item
+                *ngFor="let option of subOptions; trackBy: trackByLabel"
+                [itemLabel]="option.label"
+                [checked]="subValue?.includes(option.value)" [selectable]="true" [itemValue]="option.value"
+                (itemClicked)="onSubFilterChanged($event)"
+              ></sm-menu-item>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div *ngIf="columnExplain && options.length" class="column-explanation">{{columnExplain}}</div>
+
+    </sm-menu>
+  </ng-container>
+</div>

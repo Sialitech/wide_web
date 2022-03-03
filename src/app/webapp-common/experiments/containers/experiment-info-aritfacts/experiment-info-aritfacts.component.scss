@@ -1,0 +1,54 @@
+@import "../../../shared/ui-components/styles/variables";
+@import "../../../../webapp-common/layout/layout.scss";
+
+:host {
+  display: block;
+  position: relative;
+  height: 100%;
+
+  .no-data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    .i-no-data-artifacts{
+      width: 200px;
+      height: 160px;
+    }
+    span{
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.45;
+      color: $cloudy-blue-two;
+    }
+  }
+
+  .col-6 {
+    padding: 0;
+  }
+
+  .artifacts-col {
+    flex: 1;
+    overflow: auto;
+    height: 100%;
+    padding: 0;
+  }
+
+  ::ng-deep sm-labeled-row {
+    border-bottom: none !important;
+  }
+
+  ::ng-deep hr {
+    margin: 0 26px;
+  }
+
+  sm-experiment-artifacts-navbar {
+    border-right: 1px solid #dee1e9;
+    flex: 0 0 300px;
+    &.minimized {
+      flex: 0 0 250px;
+    }
+  }
+}

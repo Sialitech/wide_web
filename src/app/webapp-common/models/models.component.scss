@@ -1,0 +1,35 @@
+@import "../shared/ui-components/styles/variables";
+@import "../layout/layout.scss";
+
+:host {
+
+  .models-body {
+    width: 100%;
+    height: calc(100% - #{$project-header-height});
+    transition: height 0.3s;
+    &.footer-visible {
+      height: calc(100% - #{$project-header-height + $project-footer-height})
+    }
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background-color: $blue-600;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background-color: $dark-grey-blue-nine;
+  }
+  .model-table-container {
+    transition: all 0.3s;
+
+  }
+  .model-info-container {
+    transition: 0.3s;
+    &.hide-model-info {
+      width: 0 !important;
+      max-width: 0 !important;
+    }
+  }
+}

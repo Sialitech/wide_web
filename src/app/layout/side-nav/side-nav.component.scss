@@ -1,0 +1,92 @@
+@import "../../webapp-common/shared/ui-components/styles/variables";
+
+$transition-delay: 0.1;
+$transition-speed: 0.15;
+
+.side-nav {
+  z-index: 1000;
+  background-color: $blue-600;
+  height: 100%;
+  width: $side-bar-close-width;
+  position: relative;
+  transition: width $transition-speed + s;
+  transition-delay: $transition-delay + s;
+  overflow: hidden;
+
+  .item.logo {
+    background: $eggplant-purple;
+    cursor: default;
+
+    .item-icon {
+      transition: opacity $transition-speed + $transition-delay + s;
+      opacity: 1;
+      height: 100%;
+
+    }
+
+    &:hover {
+      background-color: $eggplant-purple;
+      box-shadow: unset;
+
+    }
+  }
+
+  a:hover {
+    color: $blue-250;
+  }
+
+  .item {
+    width: 100%;
+    height: $side-bar-close-width;
+    line-height: $side-bar-close-width;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+
+    .fa-24 {
+      font-size: 24px;
+    }
+
+    &:hover {
+      background-color: $blue-500;
+      box-shadow: inset 0 -1px 0 0 #252b3d;
+
+      .caption {
+        opacity: 1;
+      }
+    }
+
+    .item-icon {
+      width: $side-bar-close-width;
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      color: #a7b2d8;
+      i{
+        line-height: 64px;
+        height: 64px;
+        width: 64px;
+      }
+      .neon {
+        color: $neon-yellow-betterinchrome;
+      }
+    }
+
+    .caption {
+      transition: opacity $transition-speed + s;
+      position: absolute;
+      left: $side-bar-close-width;
+      text-transform: uppercase;
+      font-size: 15px;
+      opacity: 0.4;
+      color: $blue-250;
+    }
+  }
+
+  .account {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
+

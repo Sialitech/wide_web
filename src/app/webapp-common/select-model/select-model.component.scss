@@ -1,0 +1,20 @@
+:host {
+  .space-line {
+    height: 14px;
+  }
+
+  sm-models-table {
+    display: block;
+    height: 100%;
+  }
+
+  .model-table-container {
+    height: 53vh;
+    width: 85vw;
+  }
+
+}
+
+::ng-deep p-table table {
+  width: 100% !important;
+}

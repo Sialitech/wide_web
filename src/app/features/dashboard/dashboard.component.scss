@@ -1,0 +1,62 @@
+@import "../../webapp-common/shared/ui-components/styles/mixins/common";
+@import "../../webapp-common/shared/ui-components/styles/variables";
+
+:host {
+  .dashboard-body {
+    height: 100%;
+    padding: 0 24px;
+    overflow: auto;
+  }
+
+  .recent {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .search-bar {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin-left: 64px;
+    background-color: $blue-900;
+    text-align: center;
+    position: relative;
+
+    ::ng-deep sm-search {
+      input {
+        font-size: 16px;
+
+        &::-webkit-input-placeholder {
+          font-size: 16px;
+        }
+
+        &::-moz-placeholder {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .clear-search {
+    font-size: 14px;
+    text-align: center;
+    color: #a7b2d8;
+  }
+
+  .view-all {
+    font-size: 12px;
+    font-weight: bold;
+    color: $blue-400;
+  }
+
+  sm-dashboard-experiments {
+    display: block;
+    margin: 0 auto;
+    height: calc(100% - 356px);
+  }
+
+  .dashboard-search {
+    display: block;
+    overflow: auto;
+    height: 100%;
+  }
+}

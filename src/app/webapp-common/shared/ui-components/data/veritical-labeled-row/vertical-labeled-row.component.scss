@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+:host {
+
+  .labeled-row {
+    padding: 8px 0;
+    border-bottom: 1px solid #303443;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .value {
+    font-weight: 500;
+  }
+}

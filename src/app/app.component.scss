@@ -1,0 +1,46 @@
+@import "webapp-common/shared/ui-components/styles/variables";
+@import "webapp-common/layout/layout.scss";
+
+$notifier-height: 30px;
+
+.app-container {
+  height: 100%;
+  &:not(.login-page) {
+    margin-left: $side-bar-close-width;
+  }
+
+  &.notifier-open {
+    height: calc(100% - #{$notifier-height});
+    .main-router + * {
+      height: calc(100% - #{$top-bar-height});
+    }
+  }
+
+  .main-router + * {
+    display: block;
+    height: calc(100% - #{$top-bar-height});
+  }
+
+  &.login-page {
+    .main-router + * {
+      height: 100%;
+    }
+  }
+}
+
+
+
+
+sm-side-nav {
+  display: block;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  height: 100%;
+}
+
+#color-picker-outlet {
+  position: absolute;
+  visibility: hidden;
+}
+

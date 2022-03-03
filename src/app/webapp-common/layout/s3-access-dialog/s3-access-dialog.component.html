@@ -1,0 +1,36 @@
+<div class="w-100">
+  <div [innerHTML]="header"></div>
+</div>
+<div class="container">
+  <ng-form #S3NGForm="ngForm">
+    <mat-form-field class="w-100" *ngIf="!isAzure">
+      <mat-label>Key</mat-label>
+      <input matInput type="text" name="Key" required placeholder="Key" [(ngModel)]="S3Form.Key" #keyInput="ngModel"
+             autocomplete="off">
+      <mat-error *ngIf="keyInput.errors?.required">*Required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-label>Secret</mat-label>
+      <input matInput [(ngModel)]="S3Form.Secret" type="text" name="Secret" required #secretInput="ngModel"
+             autocomplete="off"
+             [placeholder]="isAzure ? 'Shared access signature (SAS)' : 'Secret'">
+      <mat-error *ngIf="secretInput.errors?.required">*Required</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="!isAzure" class="w-100">
+      <mat-label>Region</mat-label>
+      <input matInput [(ngModel)]="S3Form.Region" type="text" name="Region" placeholder="AWS Region (e.g. us-east-2)"
+             autocomplete="off">
+    </mat-form-field>
+    <mat-form-field *ngIf="(!isAzure) && endpoint" class="w-100">
+      <mat-label>Endpoint</mat-label>
+      <input matInput [(ngModel)]="S3Form.Endpoint" type="text" name="Endpoint" autocomplete="off"
+             placeholder="Host (Endpoint)">
+    </mat-form-field>
+    <div class="w-100 d-flex justify-content-center">
+      <button class="btn btn-neon" (click)="S3NGForm.form.markAllAsTouched(); saveNewCredentials()"
+              [disabled]="(!saveEnabled) || (formIsSubmitted && S3NGForm.invalid)">Save Credentials
+      </button>
+
+    </div>
+  </ng-form>
+</div>

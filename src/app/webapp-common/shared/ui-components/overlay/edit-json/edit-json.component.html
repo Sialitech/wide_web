@@ -1,0 +1,19 @@
+<sm-dialog-template [header]="title">
+  <div  class="data-text">
+    <div class="data-text-ace" #aceEditor></div>
+  </div>
+  <div>
+    <small *ngIf="this.showErrors"
+           class="text-danger">*Not a valid json.
+    </small>
+  </div>
+  <div class="buttons">
+    <button (click)="closeDialog(false)" class="btn btn-outline-neon yes-button">
+      Cancel
+    </button>
+    <button (click)="closeDialog(!readOnly)" class="btn btn-neon">
+      OK
+    </button>
+  </div>
+
+</sm-dialog-template>

@@ -1,0 +1,59 @@
+@import 'variables';
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 15px;
+}
+
+.custom-column-buttons {
+  display: flex;
+  border-top: 1px solid #C3CDEF;
+  font-weight: 500;
+  color: $light-grey-blue;
+  background: $faint-gray;
+  cursor: pointer;
+
+  div:not(.disabled):hover {
+    color: $blue-400;
+    transition: color 0.3s;
+  }
+}
+
+.metrics-button {
+  width: 50%;
+  border-right: 1px solid #C3CDEF;
+}
+
+.loading {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+}
+
+.loaded {
+  height: initial;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 100px;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+sm-select-metric-for-custom-col {
+  display: block;
+  height: 640px;
+  max-height: calc(100vh - 120px);
+  padding: 12px;
+}

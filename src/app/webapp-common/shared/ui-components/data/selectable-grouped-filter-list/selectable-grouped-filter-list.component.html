@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between mb-2">
+  <span class="font-weight-bold">{{titleLabel}}</span>
+</div>
+<sm-search
+  [value]="searchText"
+  [minimumChars]="0"
+  [debounceTime]="0"
+  class="underline-search"
+  placeholder="Find scalars"
+  (valueChanged)="onSearchTermChanged($event)"
+></sm-search>
+<span class="toggle-all-text" (click)="toggleHideAll()">{{checkedList.length > 0 ? 'Show all' : 'Hide all'}} </span>
+<sm-grouped-selectable-list
+  [list]="filteredList"
+  [searchTerm]="searchTerm"
+  [selected]="selected"
+  [checkedList]="checkedList"
+  (onItemSelect)="itemSelect.emit($event)"
+  (onItemCheck)="toggleHide($event)"
+  (onGroupCheck)="toggleHideGroup($event)"
+>
+</sm-grouped-selectable-list>

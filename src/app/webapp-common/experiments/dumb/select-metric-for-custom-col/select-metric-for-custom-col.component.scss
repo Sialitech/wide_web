@@ -1,0 +1,93 @@
+@import "variables";
+
+:host {
+  .title {
+    color: $blue-400;
+    flex-basis: 84%;
+  }
+
+  .variant-label {
+    padding: 4px 6px;
+
+    sm-checkbox-control {
+      width: 100%;
+    }
+  }
+
+  .value-type {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    margin-left: 24px;
+    padding-left: 18px;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: $blue-25;
+
+    sm-checkbox-control {
+      width: 100%;
+      padding-right: 24px;
+
+      ::ng-deep span.purple-v {
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  mat-expansion-panel {
+    box-shadow: none;
+    font-weight: bold;
+    color: $blue-400;
+
+    mat-expansion-panel-header {
+      padding: 7px 24px 7px 4px;
+      border-radius: 0;
+      border-bottom: 1px solid $blue-100;
+
+      &.mat-expanded {
+        background-color: $blue-50;
+        border-radius: 0;
+        border-bottom: none;
+        font-weight: bold;
+      }
+
+      .panel-title {
+        font-size: 13px;
+        color: $blue-400;
+      }
+    }
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 4px 4px 0;
+  }
+
+  .metrics {
+    height: calc(100% - 32px);
+    width: 100%;
+    overflow-y: scroll;
+
+    &.has-title {
+      height: calc(100% - #{32px + 49px});
+    }
+  }
+
+  .metric-expansion-content {
+    li {
+      &.list-item {
+        padding: 0 47px 0 24px;
+        line-height: 40px;
+        list-style: none;
+
+        &.even {
+          background-color: #f9fafb;
+        }
+
+        &:hover {
+          background-color: $blue-50;
+          transition: background-color 0.2s;
+        }
+      }
+    }
+  }
+}

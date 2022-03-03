@@ -1,0 +1,32 @@
+<div class="px-4 py-2 row align-items-center" *ngIf="hasLog && showHeader">
+  <div class="p-2 mr-auto">
+    <span>
+      <b>Hostname:</b> {{creator}}
+    </span>
+  </div>
+  <button class="btn btn-primary mr-5" (click)="downloadLog()">
+    <i class="fa fa-download"></i>
+    Download full log
+  </button>
+  <span style="width: 45px;">Filter: </span>
+  <input
+    placeholder="Filter By Regex"
+    class="form-control"
+    style="width: 250px;"
+    [value]="filter$ |async"
+    (keyup)="filterLog($event)"
+  />
+</div>
+<div *ngIf="hasLog !== undefined && !hasLog" class="no-output">
+  <i class="icon no-output-icon" [ngClass]="isDarkTheme ? 'i-no-log-dark' : 'i-no-log'"></i>
+  <h3>NO LOG DATA</h3>
+</div>
+
+<sm-experiment-log-info *ngIf="hasLog"
+  [class.no-header]="!showHeader"
+  [isDarkTheme]="isDarkTheme"
+  [logs]="log$ | async"
+  [beginningOfLog]="logBeginning$ | async"
+  [filterString]="filter$ | async"
+  (fetchMore)="getLogs($event)"
+></sm-experiment-log-info>

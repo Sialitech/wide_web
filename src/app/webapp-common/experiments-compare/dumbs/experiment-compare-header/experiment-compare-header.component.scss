@@ -1,0 +1,142 @@
+@import "../../../shared/ui-components/styles/variables";
+
+:host {
+  position: relative;
+
+  ::ng-deep #searchDiff {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background-color: white;
+
+    button {
+      font-size: 13px;
+
+      &.prev {
+        border-right-color: transparent !important;
+      }
+
+      &.next {
+        border-left-color: transparent !important;
+      }
+    }
+
+    .btn-group sm-search {
+      width: 200px;
+
+      .search-input-container {
+
+        .search-input input{
+          border: 1px solid $blue-280;
+          border-right: none;
+          border-radius: 4px 0 0 4px !important;
+          padding-left: 6px !important;
+        }
+
+        i.fa {
+          border-top: 1px solid $blue-280;
+          border-bottom: 1px solid $blue-280;
+          border-right: 1px solid $blue-280;
+        }
+      }
+    }
+  }
+
+  ::ng-deep .btn-arrow {
+    width: 42px;
+  }
+
+  ::ng-deep #refreshIcon .btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #e4e5e8;
+    font-size: 15px;
+    color: #9aa5cd;
+    margin: 0 5px;
+
+  }
+
+  ::ng-deep mat-select.view-mode {
+    width: 142px;
+
+    .mat-select-trigger {
+      width: 142px;
+      border: 1px solid $blue-250;
+      border-radius: 4px;
+      height: 32px;
+      padding: 5px 14px;
+
+      mat-select-trigger {
+        color: $blue-400;
+      }
+    }
+
+    .mat-select-arrow {
+      color: $blue-400;
+    }
+  }
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 24px;
+  border-top: 1px solid $blue-50;
+  border-bottom: 1px solid $blue-50;
+
+  .actions-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    > * {
+      margin-right: 12px;
+    }
+  }
+
+  .settings {
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+
+    .btn {
+      color: $blue-300;
+      width: 40px;
+      height: 40px;
+      font-size: 15px;
+    }
+  }
+
+  button {
+    font-weight: 500;
+    font-size: 13px;
+  }
+
+  .btn-add-experiment {
+    width: 146px;
+    background-color: $blue-50;
+  }
+
+
+}
+
+::ng-deep mat-option.compare-mat-option {
+  color: $blue-400 !important;
+
+  &.mat-selected {
+    background-color: $white !important;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .04) !important;
+    }
+
+  }
+}
+
+::ng-deep .mat-menu-content {
+  height: 100%;
+}

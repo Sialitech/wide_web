@@ -1,0 +1,36 @@
+@import "../../styles/variables";
+
+.table-diff-row {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 30px;
+  color: $blue-500;
+  border-bottom: #ededed solid 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 87.5%;
+
+  &.header {
+    font-size: 11px;
+    font-weight: bold;
+    color: $blue-400;
+    border-top: #ededed solid 1px;
+    background-color: $faint-gray;
+    font-family: $font-family-base, sans-serif;
+  }
+
+  div {
+    .show-only-on-hover {
+      opacity: 0;
+    }
+
+    &:hover {
+      .show-only-on-hover {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+

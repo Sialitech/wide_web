@@ -1,0 +1,37 @@
+@import "../../styles/variables";
+
+
+.gray {
+  color: gray;
+}
+
+i.icon {
+  font-size: 15px;
+  width: 15px;
+  height: 15px;
+}
+
+.list {
+  height: 100%;
+  padding: 0 10px 0 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    list-style: none;
+    padding: 10px 12px;
+
+    &:hover {
+      background-color: $blue-50;
+      transition: background-color 0.2s;
+    }
+  }
+}
+
+.unchecked {
+  opacity: 0.4;
+}

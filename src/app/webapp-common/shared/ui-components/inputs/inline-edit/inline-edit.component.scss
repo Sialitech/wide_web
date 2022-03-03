@@ -1,0 +1,109 @@
+@import "../../styles/variables";
+
+$inline-edit-base-width: 93%;
+
+:host.dark {
+  // input
+  .inline-edit-input,
+  .inline-edit-input:active,
+  .inline-edit-input:focus {
+    background-color: #000;
+    color: $light-periwinkle-two;
+    border: none;
+
+    &.ng-invalid {
+      color: $error-color;
+    }
+  }
+
+  // textarea
+  .inline-edit-textarea,
+  .inline-edit-textarea:active,
+  .inline-edit-textarea:focus {
+    background-color: transparent;
+    color: $blue-100;
+    border: none;
+  }
+
+
+  .inline-edit-close, .inline-edit-approve {
+    color: $blue-200;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+
+:host {
+  ::ng-deep .ui-inplace .ui-inplace-display {
+    background-color: transparent;
+    padding: 0px;
+  }
+
+  .inline-edit-close, .inline-edit-approve {
+    line-height: 16px;
+    font-size: 16px;
+    transition: color 300ms;
+
+    &:hover {
+      color: $purple;
+    }
+  }
+
+  .inline-edit-approve.disabled {
+      opacity: 0.25;
+      cursor: not-allowed !important;
+  }
+
+  .inline-edit-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 24px;
+
+    &.multiline {
+      flex-direction: column;
+      align-items: flex-end;
+      padding-right: unset;
+
+      .buttons {
+        width: 65px;
+        min-width: 65px;
+        margin: 12px 12px 0 0;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      margin-left: 6px;
+      i {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .editable-pen {
+    position: relative;
+    margin-left: 6px;
+  }
+}
+
+.editable-div {
+  .editable-pen {
+    opacity: 0;
+    height: 100%;
+    transition: opacity 1s;
+  }
+
+  &:hover {
+    .editable-pen {
+      opacity: 1;
+    }
+  }
+}

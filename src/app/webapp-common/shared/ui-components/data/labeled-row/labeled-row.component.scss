@@ -1,0 +1,31 @@
+@import '../../styles/variables';
+
+.labeled-row {
+  display: flex;
+  align-items: center;
+  padding: 6px 6px 6px 0;
+  align-content: flex-start;
+
+  .label-container {
+    width: 155px;
+    font-weight: 500;
+    color: #71758A;
+    font-size: 11px;
+  }
+
+  .content {
+    flex: 1;
+  }
+}
+
+:host-context(.dark-theme) {
+  .labeled-row {
+    border-bottom: 1px solid $blue-500;
+  }
+}
+
+:host-context(.light-theme) {
+  .labeled-row {
+    border-bottom: 1px solid $blue-100;
+  }
+}

@@ -1,0 +1,32 @@
+.content {
+  position: relative;
+}
+
+.box {
+  height: calc(90vh - 360px);
+  min-height: 100px;
+  overflow-y: scroll;
+  position: relative;
+  margin-top: 10px;
+}
+
+.buttons {
+  display: flex;
+  align-items: baseline;
+  margin: 24px 0 0 40%;
+
+  button {
+    text-transform: uppercase;
+  }
+  p {
+    font-size: 11px;
+    color: lightslategray;
+  }
+}
+
+:host {
+  sm-confirm-dialog {
+    width: 100%;
+    max-width: 960px;
+  }
+}

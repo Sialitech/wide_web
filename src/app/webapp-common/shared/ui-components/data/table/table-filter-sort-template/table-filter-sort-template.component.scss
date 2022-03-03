@@ -1,0 +1,57 @@
+@import "../../../styles/variables";
+
+:host {
+
+  .filter-sort-container {
+    position: relative;
+    z-index: 20;
+    //height: 45px;
+
+
+    ::ng-deep .menu-button {
+      color: $blue-400;
+      font-weight: 500;
+      font-size: 12px;
+
+      &.active {
+        color: $blue-250;
+      }
+    }
+
+
+
+    .sort-icon {
+      margin-left: -4px;
+    }
+  }
+
+}
+
+.filter-type {
+  padding: 4px 14px;
+  text-align: right;
+
+  .link {
+    font-size: 12px;
+    font-weight: 500;
+    color: $blue-200;
+    cursor: pointer;
+
+    &.selected {
+      color: $blue-400;
+      pointer-events: none;
+      cursor: initial;
+    }
+  }
+}
+
+.column-explanation {
+  padding: 5px 16px;
+  font-size: 10px;
+}
+
+.options-section {
+  height: 60vh;
+  max-height: 400px;
+  overflow: auto;
+}

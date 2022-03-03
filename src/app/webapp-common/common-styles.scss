@@ -1,0 +1,763 @@
+@use '~@angular/material' as mat;
+@import "angular-notifier/styles.scss";
+@import "angular-notifier/styles/themes/theme-material.scss";
+@import "shared/ui-components/styles/notifications";
+@import "~britecharts/src/styles/charts/line";
+@import "~britecharts/src/styles/charts/donut";
+@import "~britecharts/src/styles/common/legend";
+@import "~britecharts/src/styles/common/tooltip";
+@import "~britecharts/src/styles/common/axes";
+@import "~britecharts/src/styles/common/grid";
+// @import "~ngx-markdown-editor/assets/highlight.js/agate.min.css";
+@import "shared/ui-components/styles/material-palette";
+@import "assets/fonts/trains-icons.scss";
+@import "layout/layout";
+
+@include mat.core();
+//@import "../webapp-common/shared/ui-components/styles/material-theme.scss";
+
+$custom-typography: mat.define-typography-config(
+  $font-family: $font-family-base
+);
+
+@include mat.all-component-typographies($custom-typography);
+
+$allegro-theme-primary: mat.define-palette($mat-allegro);
+$allegro-theme-accent: mat.define-palette($mat-allegro, A400, A100, A400);
+$custom-theme-primary: mat.define-palette(mat.$green-palette);
+$custom-theme-accent: mat.define-palette(mat.$lime-palette, A400, A100, A400);
+$custom-theme-warn: mat.define-palette(mat.$purple-palette);
+
+$sm-theme-primary: mat.define-palette($sm-purple);
+$sm-theme-accent: mat.define-palette($sm-purple, A400, A100, A400);
+$sm-theme-warn: mat.define-palette(mat.$purple-palette);
+
+$green-theme: mat.define-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+$dark-theme: mat.define-dark-theme($allegro-theme-primary, $allegro-theme-accent);
+$light-theme: mat.define-light-theme($allegro-theme-primary, $allegro-theme-accent);
+$sm-theme: mat.define-light-theme($sm-theme-primary, $sm-theme-accent, $sm-theme-warn);
+
+@include mat.form-field-color($light-theme);
+@include mat.progress-spinner-theme($light-theme);
+
+.dark-theme {
+  @include mat.core-theme($dark-theme);
+  @include mat.button-theme($dark-theme);
+  @include mat.slide-toggle-color($green-theme);
+  @include mat.radio-color($green-theme);
+  @include mat.select-color($dark-theme);
+  @include mat.menu-color($light-theme);
+  @include mat.autocomplete-color($light-theme);
+  @include mat.datepicker-color($light-theme);
+  @include mat.pseudo-checkbox-color($light-theme);
+  @include mat.divider-color($light-theme);
+  @include mat.progress-bar-theme($light-theme);
+
+  .mat-checkbox-frame,
+  .mat-radio-outer-circle {
+    border-color: $blue-400;
+  }
+
+  .mat-expansion-panel-header-description, .mat-expansion-indicator:after {
+    color: $white;
+  }
+
+  .light-theme .mat-radio-button.mat-radio-disabled .mat-radio-outer-circle,
+  .light-theme .mat-radio-button.mat-radio-disabled .mat-radio-label-content {
+    border-color: $blue-200 !important;
+    color: $blue-200 !important;
+  }
+
+  .light-theme .mat-radio-button.mat-radio-disabled .mat-radio-inner-circle {
+    background-color: transparent !important;
+  }
+  .link {
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.light-theme {
+  @include mat.core-color($light-theme);
+  @include mat.button-color($light-theme);
+  @include mat.slide-toggle-color($sm-theme);
+  //  @include mat.radio-color($sm-theme);
+  @include mat.radio-theme($sm-theme);
+  //  @include mat.select-color($light-theme);
+  @include mat.select-theme($light-theme);
+  @include mat.menu-color($light-theme);
+  @include mat.autocomplete-color($light-theme);
+  @include mat.datepicker-color($light-theme);
+  @include mat.pseudo-checkbox-color($light-theme);
+  @include mat.divider-color($light-theme);
+  @include mat.progress-bar-theme($light-theme);
+
+  .mat-checkbox-frame,
+  .mat-radio-outer-circle {
+    border-color: $purple;
+  }
+
+  .mat-radio-button.mat-accent.disabled, .mat-radio-button.mat-accent.disabled.mat-radio-checked {
+    .mat-radio-outer-circle, .mat-radio-inner-circle {
+      border-color: $blue-300;
+    }
+
+    .mat-radio-inner-circle {
+      background-color: $blue-300;
+    }
+  }
+
+  .light-theme .mat-radio-button.mat-radio-disabled .mat-radio-outer-circle,
+  .light-theme .mat-radio-button.mat-radio-disabled .mat-radio-label-content {
+    border-color: $blue-200 !important;
+    color: $blue-200 !important;
+  }
+
+  .light-theme .mat-radio-button.mat-radio-disabled .mat-radio-inner-circle {
+    background-color: transparent !important;
+  }
+
+  .mat-drawer-side {
+    border-right: solid 1px $blue-100;
+  }
+
+  .mat-expansion-panel-header-description, .mat-expansion-indicator:after {
+    color: $blue-300;
+  }
+
+}
+
+* {
+  outline: none !important;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-base, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+
+.al-header {
+  font-weight: 500;
+  margin: 0;
+}
+
+h3.al-header {
+  font-size: 15px;
+}
+
+h4.al-header {
+  font-size: 14px;
+}
+
+h5.al-header {
+  font-weight: normal;
+}
+span.highlight-text{
+  background: $neon-yellow-betterinchrome;
+  &.current-match{
+    background: #f5d655;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.noselect {
+  user-select: none;
+}
+
+.grab {
+  cursor: grab;
+}
+
+.al-danger {
+  background: #ffcccc !important;
+
+  &:hover {
+    background: #ffb4b4 !important;
+  }
+
+  &:active {
+    background: #ff7272 !important;
+  }
+}
+
+mat-expansion-panel {
+  box-shadow: unset;
+
+  .mat-expansion-panel-header {
+    margin-bottom: 0;
+  }
+}
+
+//mat-expansion-panel :not(.dark) {
+//  &:hover {
+//    background: transparent !important;
+//  }
+//  .mat-expansion-panel-header {
+//    &:hover {
+//      background: $blue-50 !important;
+//    }
+//  }
+//}
+
+.mat-expansion-panel-header {
+  font-family: $font-family-base, sans-serif;
+}
+
+.al-empty-collapse .mat-expansion-panel-header-title .al-header.sub-header {
+  color: #ced1db;
+}
+
+.mat-expansion-panel-header.al-empty-collapse {
+  pointer-events: none;
+}
+
+.al-empty-collapse .mat-expansion-indicator {
+  display: none;
+}
+
+.al-success {
+  background: #effff1 !important;
+}
+
+.al-primary {
+  background: $faint-gray !important;
+}
+
+.mat-slide-toggle-label {
+  display: flex !important;
+}
+
+// Cancel bootstrap css on material component
+mat-radio-group mat-radio-button label.mat-radio-label {
+  display: inline-flex;
+  margin-bottom: 0;
+}
+
+mat-radio-button.sm {
+  .mat-radio-container,
+  .mat-radio-outer-circle,
+  .mat-radio-inner-circle {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+button {
+  cursor: pointer;
+
+  &[disabled] {
+    cursor: default !important;
+  }
+}
+
+// utility to display a pointer
+.pointer {
+  cursor: pointer;
+}
+
+.color-neon-yellow {
+  color: $neon-yellow;
+}
+.background-neon-green {
+  background-color: $neon-green !important;
+  background: $neon-green !important;
+}
+.background-neon-yellow {
+  background-color: $neon-yellow !important;
+  background: $neon-yellow !important;
+}
+.color-neon-green {
+  color: $neon-green;
+}
+
+.border-radius {
+  border-radius: 4px;
+}
+.grabbing {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.flex-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.empty-menu {
+  height: 100px;
+}
+
+.capital-case {
+  text-transform: capitalize;
+}
+
+
+.vcenter {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+.vertical-middle-middle {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vertical-middle-left {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.center {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ellipsis {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+body .ui-state-highlight .card {
+  background-color: #0275d8;
+}
+
+.hidden {
+  display: none;
+}
+
+.hidden-important {
+  display: none !important;
+}
+
+.card-margin {
+  margin: 15px;
+}
+
+.selected-tab {
+  color: chartreuse;
+}
+
+body .ui-multiselect {
+  background: #ffffff;
+  padding: 0;
+  border: none;
+
+  label.ui-multiselect-label.ui-corner-all:after {
+    content: "\F0D7";
+    padding-left: 5px;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+  }
+}
+
+.ui-multiselect-panel .ui-multiselect-list {
+  border-radius: 0;
+}
+
+.ui-multiselect-panel .ui-multiselect-items-wrapper {
+  padding: 0;
+}
+
+.ui-multiselect .ui-multiselect-label {
+  padding: 12px;
+  margin: 0;
+}
+
+body .ui-multiselect .ui-multiselect-header {
+  display: none;
+}
+
+body .ui-multiselect-panel .ui-multiselect-item label {
+  vertical-align: inherit;
+  cursor: pointer;
+}
+
+body .table th, .table td {
+  padding: inherit;
+}
+
+body .sub-table {
+  width: 100%;
+
+  .labeled-row {
+    margin-top: 0;
+    margin-bottom: 0;
+    //background-color: #f7f7f7;
+    width: 100%;
+  }
+}
+
+body .alignTop {
+  vertical-align: top;
+}
+
+body .clean-list {
+  list-style-type: none;
+}
+
+.mat-tooltip {
+  &.sm-tooltip {
+    background-color: $purple;
+    box-shadow: 0 -2px 8px 0 rgba(0, 0, 0, 0.2);
+    font-family: 'Heebo', sans-serif;
+    font-size: 11px;
+    line-height: 1.45;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+    word-break: break-word;
+    max-width: 400px;
+
+    &.validation {
+      background-color: #ff001f;
+    }
+  }
+
+  &.parameter-tooltip {
+    margin: 6px auto 6px -74px;
+  }
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 30px !important;
+  font-size: 11px !important;
+}
+
+// --------------------------------old------------------------------------------
+@import "shared/ui-components/styles/index";
+
+.mat-dialog-container {
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+.sm-mat-dialog-panel {
+  border: $blue-600 1px solid;
+  border-radius: 4px;
+}
+
+* table .ui-datatable-data {
+  -moz-user-select: none;
+}
+
+// material are stupid...
+html {
+  &.cdk-global-scrollblock {
+    top: 0 !important;
+    position: initial !important;
+    overflow: hidden;
+  }
+
+  .mat-menu-panel {
+    max-width: none;
+    min-width: 114px;
+    min-height: 32px;
+
+    &.custom-columns {
+      width: 370px;
+    }
+  }
+}
+
+.sm-menu-header {
+  text-align: center;
+  padding: 15px 15px;
+  background: $blue-25;
+  color: $blue-400;
+  font-weight: 500;
+}
+
+.mat-menu-content .mat-menu-item {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 32px 0 16px;
+}
+
+// hide arrows for number inputs
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+// hide arrows for number inputs (FireFox)
+input[type=number] {
+  -moz-appearance: textfield !important;
+}
+
+.js-plotly-plot .plotly .modebar {
+  z-index: 11 !important;
+}
+
+as-split {
+  &.as-dragging {
+    .as-split-area {
+      transition: unset;
+    }
+  }
+
+  .as-split-area {
+    transition: flex-basis .5s;
+  }
+
+  &.as-horizontal {
+    & > .as-split-gutter {
+      height: unset !important;
+
+      .as-split-gutter-icon {
+        background-color: $blue-900;
+        border-left: $blue-600 solid 1px;
+        border-right: $blue-600 solid 1px;
+      }
+    }
+  }
+}
+
+.notifier__container {
+  ul {
+    margin: 0;
+  }
+}
+
+$type-colors: (
+  string: #ff8400,
+  number: $neon-yellow-betterinchrome,
+  boolean: #b938a4,
+  date: #05668D,
+);
+
+.dark-theme {
+  .ngx-json-viewer {
+    background-color: $blue-800;
+    overflow: unset !important;
+    height: 99% !important;
+    font-size: 11px !important;
+    line-height: 11px !important;
+
+    .segment .segment-main {
+      .toggler {
+        font-size: 16px !important;
+        line-height: 4px !important;
+      }
+
+      .segment-key {
+        color: $blue-250 !important;
+      }
+    }
+  }
+
+  @each $type, $color in $type-colors {
+    .segment-type-#{$type} > .segment-main > .segment-value {
+      color: $color !important;
+    }
+  }
+
+  .segment-type-link > .segment-main > .segment-value > a {
+    color: #ff8400 !important;
+  }
+}
+
+.mat-expansion-panel.allegro-style {
+  width: 100%;
+  background-color: $blue-500;
+  box-shadow: unset !important;
+
+  .mat-expansion-panel-header {
+    height: 25px !important;
+    max-height: 25px;
+    font-size: 13px;
+
+    &:hover {
+      background: rgba(0, 0, 0, .04);
+    }
+
+    .mat-content {
+      flex: unset;
+    }
+
+    .mat-expansion-panel-header-title, .mat-expansion-indicator:after {
+      margin-bottom: 3px;
+      flex: unset;
+      color: $blue-300;
+      align-items: baseline;
+    }
+
+    .mat-expansion-indicator {
+      margin-left: auto;
+      height: 15px;
+
+    }
+  }
+}
+
+.mat-checkbox label {
+  margin: 0;
+  display: inline-flex;
+}
+
+.image-displayer-dialog {
+  .mat-dialog-container {
+    padding: 0;
+    border-radius: 0;
+  }
+}
+
+//material menu
+body .mat-menu-content:not(:empty) {
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .search-results {
+    overflow: auto;
+    max-width: 222px;
+  }
+
+  .fixed-options-subheader {
+    padding: 8px 16px 0;
+    opacity: 0.5;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
+
+body .mat-menu-panel .mat-form-field.tags-menu-input {
+  .mat-form-field-wrapper {
+    padding: 0;
+
+    .mat-form-field-flex {
+      padding: 0 14px;
+      align-items: center;
+
+      .mat-form-field-infix, .mat-form-field-suffix {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border: 0;
+        font-size: 14px;
+      }
+    }
+
+    .mat-form-field-underline {
+      bottom: unset;
+    }
+  }
+}
+
+.hyper-parameters-tooltip {
+  white-space: pre-line;
+  text-align: left !important;
+  font-size: 14px !important;
+}
+
+button.btn.button-outline-dark {
+  height: 28px;
+  padding: 6px 12px 5px;
+  border: solid 1px $blue-500;
+  border-radius: 4px;
+  background-color: transparent;
+  color: $blue-280;
+  font-weight: 500;
+  font-size: 11px;
+
+  &:disabled {
+    color: $blue-280;
+  }
+
+  &:hover:not(:disabled) {
+    color: $blue-280;
+    background-color: $blue-600;
+    border-color: $blue-600;
+  }
+}
+
+.i-welcome-researcher {
+  background-image: url('./assets/icons/welcome-researcher.svg');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  background-size: contain;
+  display: inline-block;
+}
+
+.sm-card-list-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 352px);
+  grid-gap: 32px 24px;
+  padding: 0 24px 24px;
+  justify-content: center;
+
+  .load-more {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 15px;
+    grid-column: 1 / -1;
+
+    .load-more-btn {
+      padding: 8px 40px;
+    }
+  }
+}
+
+.sm-card-list-header {
+  display: flex;
+  justify-content: space-between;
+  padding: $projects-header-padding 6px $projects-header-padding * 0.5 0;
+
+  .recent-title {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+
+    & > .menu {
+      color: $blue-300;
+      font-weight: 500;
+      cursor: pointer;
+      margin-right: 16px;
+    }
+  }
+}
+
+.cdk-overlay-backdrop.darker {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.cdk-drag-preview.form-group-drag {
+  padding: 8px 16px 32px 16px;
+  border-radius: 4px;
+  border: solid 1px #d4d6e0;
+  background-color: white;
+}
+
+.ace_placeholder {
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+  color: $blue-grey !important;
+}

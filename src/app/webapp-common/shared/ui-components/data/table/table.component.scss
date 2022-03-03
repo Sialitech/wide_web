@@ -1,0 +1,213 @@
+@import "../../styles/variables";
+
+:host {
+  ::ng-deep th.resize-enabled span.p-column-resizer {
+    width: 8px;
+
+    &:hover {
+      background: $blue-300;
+      background-clip: content-box;
+    }
+  }
+
+  ::ng-deep th.resize-disabled span.p-column-resizer {
+    cursor: auto;
+  }
+
+  ::ng-deep .p-column-resizer-helper {
+    background-color: $blue-300;
+    z-index: 1000;
+  }
+
+  ::ng-deep .p-datatable-table .p-datatable-thead {
+    top: -1px;
+    z-index: 20;
+  }
+
+  .table-header {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .table-header-title {
+    font-weight: bold;
+  }
+
+  .table-actions {
+    padding-top: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 24px;
+  }
+
+  .selected-col-header {
+    pointer-events: none;
+  }
+
+  .table-load-more {
+    background-color: transparent !important;
+  }
+
+  .load-more-wrapper {
+    padding: 32px 0;
+
+    button {
+      padding: 8px 40px;
+      width: 175px;
+    }
+
+    .load-spinner {
+      display: inline-block;
+      vertical-align: middle;
+      background-image: url("#{$assets-icons-path}/Spinner.svg");
+      background-repeat: no-repeat;
+      background-size: 16px;
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+
+    }
+  }
+
+
+  .no-data {
+    text-align: center;
+    padding: 15px 0 10px 0;
+    font-size: 14px;
+    width: 120px;
+  }
+
+  tr {
+    transition: height 0.5s cubic-bezier(.55,.06,.68,.19);
+    &:hover:not(.header):not(.selected):not(.no-data-row):not(.simple) {
+      background-color: $blue-650;
+    }
+
+    &.checked:not(.header):not(.selected):not(.no-data-row):not(.simple) {
+      background-color: $blue-500;
+      .td{
+        border-bottom-color: $blue-600;
+      }
+
+      &:hover, &.contexted {
+        background-color: $blue-550;
+      }
+    }
+
+    &.selected {
+      .td{
+        border-bottom-color: $blue-600;
+      }
+      background-color: $blue-400;
+
+      &:hover {
+        background-color: $blue-480;
+      }
+    }
+
+
+    &.header {
+      height: 48px;
+    }
+
+    th {
+      background-color: $blue-700;
+      vertical-align: middle;
+      color: $blue-300;
+      border-bottom: 1px solid $blue-600;
+
+      &.disable-drag {
+        cursor: initial !important;
+      }
+
+      .col-header {
+        text-align: left;
+        font-size: 12px !important;
+        font-weight: 500;
+      }
+
+      &:hover {
+        background-color: $blue-600;
+      }
+    }
+
+    td {
+      vertical-align: middle;
+      color: $blue-100;
+      font-size: 1rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      &:not(.no-data):not(.load-more-wrapper){
+        border-bottom: 1px solid #303443;
+        &.simple{
+          border-bottom-color: $blue-100;
+
+        }
+      }
+
+
+
+      &.no-data {
+        color: $blue-250;
+        text-align: center;
+        padding: 15px 0 10px 0;;
+      }
+    }
+  }
+
+  :host-context(.light-theme) {
+    tr {
+      &.checked:not(.header):not(.no-data-row):not(.simple) {
+        background-color: $blue-100;
+        .td{
+          border-bottom-color: $blue-100;
+        }
+
+        &:hover, &.contexted {
+          background-color: $blue-50;
+        }
+      }
+
+      &:hover:not(.header):not(.no-data-row):not(.simple) {
+        background-color: $blue-50;
+      }
+
+      &.header {
+        @supports (-moz-appearance:meterbar) {
+          border-bottom: 3px solid #364164;
+        }
+      }
+
+      th {
+        background-color: $blue-50;
+        color: $blue-400;
+        font-weight: 500;
+        border-bottom: none;
+      }
+
+      td {
+        color: $blue-400;
+        border-bottom: none;
+        &:not(.no-data):not(.load-more-wrapper){
+          border-bottom: 1px solid $blue-50;
+        }
+        &.no-data {
+          color: $blue-300;
+        }
+      }
+    }
+  }
+}
+:host-context(.dark-theme-table.table-first-column-color) {
+  tr td:not(.no-data):not(.load-more-wrapper).simple {
+    border-bottom-color: $dark-grey-blue;
+    color: $blue-280;
+    &:first-child {
+      color: $blue-400;
+    }
+  }
+}

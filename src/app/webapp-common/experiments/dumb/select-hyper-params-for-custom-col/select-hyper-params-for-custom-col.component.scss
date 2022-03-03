@@ -1,0 +1,23 @@
+@import "../../../shared/ui-components/styles/variables";
+
+:host {
+  width: 370px;
+  min-height: 470px;
+}
+
+sm-grouped-checked-filter-list {
+  padding: 15px 15px 0 15px;
+  max-height: 419px;
+  ::ng-deep .actions {
+    padding-top: 10px;
+  }
+}
+
+.hyper-param-header {
+  color: $blue-400;
+  flex-basis: 84%
+}
+
+.hyper-params-container {
+  padding: 15px
+}

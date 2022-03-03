@@ -1,0 +1,55 @@
+@import "../../../shared/ui-components/styles/variables";
+
+:host {
+  position: relative;
+  height: 32px;
+  display: flex;
+  align-items: center;
+
+  .search-container {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.35s ease-in-out;
+    display: inline-block;
+
+    &.open {
+      width: 284px;
+    }
+  }
+
+  .regexp {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    border-radius: 3px;
+    position: relative;
+    right: 24px;
+
+    &:hover {
+      background-color: $blue-400;
+    }
+
+    &.active {
+      color: $blue-900;
+      background-color: $blue-280;
+    }
+  }
+
+  i.fa {
+    color: $blue-grey;
+    font-size: 18px;
+    margin-left: auto;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 32px;
+    display: flex;
+    &:hover {
+      color: $blue-200;
+    }
+  }
+  i.fa-times {
+    margin-right:4px;
+  }
+}
