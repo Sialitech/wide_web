@@ -39,7 +39,32 @@
       </div>
       <div class="caption">workers & queues</div>
     </a> -->
-    <button>TEST</button>
+
+
+    <a class="item d-block" smTooltip="PROJECTS" showDelay="0" matTooltipPosition="right" routerLink="">
+      <div class="item-icon">
+        <fa-icon [icon]="faCoffee" [class]="'al-icon al-color ' + (rlaProjects.isActive ? 'neon-yellow': 'blue-300')" ></fa-icon>
+      </div>
+      <div class="caption">version control</div>
+    </a>
+    <a class="item d-block" smTooltip="PROJECTS" showDelay="0" matTooltipPosition="right" routerLink="">
+      <div class="item-icon">
+        <fa-icon [icon]="faBug" [class]="'al-icon al-color ' + (rlaProjects.isActive ? 'neon-yellow': 'blue-300')"></fa-icon>
+      </div>
+      <div class="caption">cloud</div>
+    </a>
+    <a class="item d-block" smTooltip="PROJECTS" showDelay="0" matTooltipPosition="right" routerLink="">
+      <div class="item-icon">
+        <fa-icon [icon]="faHatWizard" [class]="'al-icon al-color ' + (rlaProjects.isActive ? 'neon-yellow': 'blue-300')" ></fa-icon>
+      </div>
+      <div class="caption">comparison</div>
+    </a>
+
+
+   
+    
+    
+
 
   </ng-container>
   <div *ngIf="currentUser" class="account">
