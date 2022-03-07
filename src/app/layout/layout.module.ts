@@ -6,11 +6,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {SurveyComponent} from './survey/survey.component';
 import {SharedModule} from '../shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [SideNavComponent, SurveyComponent],
   exports: [SideNavComponent, SurveyComponent],
     imports: [
+        FontAwesomeModule,
         CommonModule,
         SMSharedModule,
         FormsModule,
