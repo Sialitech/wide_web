@@ -60,7 +60,7 @@ export const BASE_ENV = {
   production: true,
   apiBaseUrl: null,
   fileBaseUrl: null,
-  productName: 'clearml',
+  productName: 'Acciona',
   demo: false,
   headerPrefix: 'X-Clearml',
   version: versionConf.version,
