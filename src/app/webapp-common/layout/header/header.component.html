@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div *ngIf="isDashboard && !isLogin" class="logo-full middle"
+  <div  class="logo-full middle"
        [class.make-room-for-slogan]="environment.whiteLabelSlogan">
     <img [src]="environment?.branding?.logo" width="122" height="42">
     <div *ngIf="environment.whiteLabelSlogan" class="slogan">{{environment.whiteLabelSlogan}}</div>
