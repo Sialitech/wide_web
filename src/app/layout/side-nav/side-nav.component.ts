@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {ConfigurationService} from '../../webapp-common/shared/services/configuration.service';
 import {SearchDeactivate} from '../../webapp-common/dashboard-search/dashboard-search.actions';
-import { faCoffee, faBug,  faHatWizard, faFlushed } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faBug,  faHatWizard, faFlushed, faBalanceScaleLeft, faDatabase, faCodeBranch, faFileExcel} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -37,5 +37,9 @@ export class SideNavComponent {
   faCoffee = faCoffee;
   faBug = faBug;
   faHatWizard = faHatWizard;
-  faFlushed = faFlushed
+  faFlushed = faFlushed;
+  faBalanceScaleLeft = faBalanceScaleLeft;
+  faDatabase = faDatabase
+  faCodeBranch = faCodeBranch
+  faFileExcel = faFileExcel
 }
