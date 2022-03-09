@@ -222,7 +222,7 @@ export class AppComponent implements OnInit, OnDestroy {
         return acc.concat(dynamicCrumb ? dynamicCrumb.name : formatStaticCrumb(config).name);
       }, [''])
       .filter(name => !!name);
-    this.titleService.setTitle(`Acciona - ${crumbs.join(' / ')}`);
+    this.titleService.setTitle(`Wide - ${crumbs.join(' / ')}`);
   }
 
   versionDismissed(version: string) {

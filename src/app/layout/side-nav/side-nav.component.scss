@@ -5,7 +5,7 @@ $transition-speed: 0.15;
 
 .side-nav {
   z-index: 1000;
-  background-color: $blue-600;
+  background-color: black;
   height: 100%;
   width: $side-bar-close-width;
   position: relative;
@@ -14,7 +14,7 @@ $transition-speed: 0.15;
   overflow: hidden;
 
   .item.logo {
-    background: $eggplant-purple;
+    background: black;
     cursor: default;
 
     .item-icon {
@@ -32,7 +32,7 @@ $transition-speed: 0.15;
   }
 
   a:hover {
-    color: $blue-250;
+    color: black;
   }
 
   .item {
@@ -48,8 +48,8 @@ $transition-speed: 0.15;
     }
 
     &:hover {
-      background-color: $blue-500;
-      box-shadow: inset 0 -1px 0 0 #252b3d;
+      background-color: black;
+      box-shadow: inset 0 -1px 0 0 black;
 
       .caption {
         opacity: 1;
@@ -79,7 +79,7 @@ $transition-speed: 0.15;
       text-transform: uppercase;
       font-size: 15px;
       opacity: 0.4;
-      color: $blue-250;
+      color: black;
     }
   }
 
