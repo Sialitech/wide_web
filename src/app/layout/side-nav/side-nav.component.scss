@@ -5,7 +5,7 @@ $transition-speed: 0.15;
 
 .side-nav {
   z-index: 1000;
-  background-color: black;
+  background-color: white;
   height: 100%;
   width: $side-bar-close-width;
   position: relative;
@@ -14,7 +14,7 @@ $transition-speed: 0.15;
   overflow: hidden;
 
   .item.logo {
-    background: black;
+    background: white;
     cursor: default;
 
     .item-icon {
