@@ -45,13 +45,13 @@
         </mat-autocomplete>
         <ng-content></ng-content>
         <div class="terms-of-use" [class.darkerTou]="darkerTou" *ngIf="touLink && !hideTou">
-          <span>By signing up you agree to Allegro AI’s <a class="link" [href]="touLink" target="_blank">Privacy Policy and Terms of Use</a>.</span>
+          <!-- <span>By signing up you agree to Allegro AI’s <a class="link" [href]="touLink" target="_blank">Privacy Policy and Terms of Use</a>.</span> -->
         </div>
       </form>
     </section>
   </div>
 
-  <div *ngIf="banner" class="banner">{{banner}}</div>
+  <!-- <div *ngIf="banner" class="banner">{{banner}}</div>
   <div *ngIf="showGitHub" class="community-links">
     <a class="link" target="_blank" href="https://github.com/allegroai/clearml/stargazers">
       <i class="al-icon al-ico-star sm"></i><span class="text">Star<span class="gazer" *ngIf="stars"> ({{(stars | filesize:{base: 10, round: 1, symbols: {kB: 'k', B: '', mB: 'm'} })}})</span></span></a>
@@ -60,5 +60,5 @@
       <i class="al-icon al-ico-slack sm"></i><span class="text">Community on Slack</span></a>
     <a class="link" *ngIf="true" href="https://www.clear.ml/contact-us" target="_blank"><i class="al-icon al-ico-email sm"></i><span class="text">Contact
       Us</span></a>
-  </div>
+  </div> -->
 </div>
