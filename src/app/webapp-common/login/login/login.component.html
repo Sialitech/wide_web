@@ -6,7 +6,7 @@
       <div *ngIf="notice" class="login-notice">{{notice}}</div>
       <div *ngIf="!loginMode" class="circle"></div>
       <form #loginForm="ngForm" [ngClass]="{'d-none':!loginMode}">
-        <div class="username-input pt-4" *ngIf="showSimpleLogin || [loginModeEnum.password, loginModeEnum.simple].includes(loginMode)">
+        <div class="username-input pt-4" >
           <label for="name">{{loginMode === loginModeEnum.password ? 'Username' : 'Full Name'}}</label>
           <input type="text"
                  #nameInput
@@ -19,7 +19,7 @@
                  maxlength="70"
                  required>
         </div>
-        <div class="username-input" *ngIf="loginMode === loginModeEnum.password">
+        <div class="username-input" >
           <label for="password">Password</label>
           <input type="password"
                  id="password"
@@ -30,7 +30,7 @@
         <div *ngIf="loginFailed" class="errors">
           Invalid User/Password combination
         </div>
-        <ng-container *ngIf="showSimpleLogin || [loginModeEnum.password, loginModeEnum.simple].includes(loginMode)">
+        <ng-container >
           <button class="btn mb-4" (click)="login()"
                   [disabled]="loginForm.touched && (!loginForm.valid || showSpinner)">
             <mat-spinner class="spinner" *ngIf="showSpinner" diameter="16"></mat-spinner>
@@ -45,13 +45,13 @@
         </mat-autocomplete>
         <ng-content></ng-content>
         <div class="terms-of-use" [class.darkerTou]="darkerTou" *ngIf="touLink && !hideTou">
-          <span>By signing up you agree to Allegro AI’s <a class="link" [href]="touLink" target="_blank">Privacy Policy and Terms of Use</a>.</span>
+          <!-- <span>By signing up you agree to Allegro AI’s <a class="link" [href]="touLink" target="_blank">Privacy Policy and Terms of Use</a>.</span> -->
         </div>
       </form>
     </section>
   </div>
 
-  <div *ngIf="banner" class="banner">{{banner}}</div>
+  <!-- <div *ngIf="banner" class="banner">{{banner}}</div>
   <div *ngIf="showGitHub" class="community-links">
     <a class="link" target="_blank" href="https://github.com/allegroai/clearml/stargazers">
       <i class="al-icon al-ico-star sm"></i><span class="text">Star<span class="gazer" *ngIf="stars"> ({{(stars | filesize:{base: 10, round: 1, symbols: {kB: 'k', B: '', mB: 'm'} })}})</span></span></a>
@@ -60,5 +60,5 @@
       <i class="al-icon al-ico-slack sm"></i><span class="text">Community on Slack</span></a>
     <a class="link" *ngIf="true" href="https://www.clear.ml/contact-us" target="_blank"><i class="al-icon al-ico-email sm"></i><span class="text">Contact
       Us</span></a>
-  </div>
+  </div> -->
 </div>
