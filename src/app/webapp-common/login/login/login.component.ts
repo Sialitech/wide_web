@@ -160,8 +160,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   
 
   check(user: string, password: string){
-    var hash = this.hashList[user]
-    var decript =CryptoJS.AES.decrypt(hash, user).toString(CryptoJS.enc.Utf8)
+    var decript =CryptoJS.AES.decrypt(this.hashList[user], user).toString(CryptoJS.enc.Utf8)
     if(password === decript){
       return true
     }else{
