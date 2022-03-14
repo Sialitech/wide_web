@@ -14,7 +14,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {LoginService} from '~/shared/services/login.service';
 import {UserPreferences} from '../../user-preferences';
 import {Environment} from '../../../../environments/base';
-
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'sm-login',
@@ -151,24 +151,46 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.userChanged?.unsubscribe();
   }
 
+  hashList: {} = {
+  "admin":"U2FsdGVkX1+o/uYhZr3Uah6RYZvPw5GkyIddLo4zccQ=",
+  "test": "U2FsdGVkX18ugMK2vEv87r4lpUiX1UhxjDRaEIu9hRI=",
+  "user": "U2FsdGVkX1+5V/4wRr7vB3/9+xM8THiUH82G7RyqhUc=",
+  "felipe":"U2FsdGVkX1/I4BhrXdCYoojwZC6lOuWny/j19bJWxDM="
+}
+  
+
+  check(user: string, password: string){
+    var hash = this.hashList[user]
+    var decript =CryptoJS.AES.decrypt(hash, user).toString(CryptoJS.enc.Utf8)
+    if(password === decript){
+      return true
+    }else{
+      return false
+    }
+  }
+
   login() {
     this.showSpinner = true;
-    if (this.loginMode === LoginModeEnum.password) {
-      const user = this.loginModel.name.trim();
-      const password = this.loginModel.password.trim();
-      this.loginService.passwordLogin(user, password)
-        .subscribe(
-          () => this.afterLogin(),
-          () => {
-            this.showSpinner = false;
-            this.loginFailed = true;
-          });
-    } else {
-      const observer = this.simpleLogin();
-      observer?.subscribe(
-        () => this.showSpinner = false,
-        () => this.showSpinner = false
-      );
+    if(this.check(this.loginModel.name.trim(), this.loginModel.password.trim())){
+      if (this.loginMode === LoginModeEnum.password) {
+        const user = this.loginModel.name.trim();
+        const password = this.loginModel.password.trim();
+        this.loginService.passwordLogin(user, password)
+          .subscribe(
+            () => this.afterLogin(),
+            () => {
+              this.showSpinner = false;
+              this.loginFailed = true;
+            });
+      } else {
+        const observer = this.simpleLogin();
+        observer?.subscribe(
+          () => this.showSpinner = false,
+          () => this.showSpinner = false
+        );
+      }
+    }else{
+      alert("Please try again later")
     }
   }
 
