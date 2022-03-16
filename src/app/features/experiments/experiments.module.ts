@@ -27,6 +27,8 @@ import {ExperimentInfoExecutionComponent} from '../../webapp-common/experiments/
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {ExperimentOutputComponent} from './containers/experiment-ouptut/experiment-output.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 export const experimentSyncedKeys = [
@@ -42,6 +44,7 @@ export const experimentSyncedKeys = [
 
 @NgModule({
   imports: [
+    FontAwesomeModule,
     SMMaterialModule,
     FormsModule,
     LayoutModule,

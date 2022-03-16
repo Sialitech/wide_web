@@ -16,6 +16,8 @@ import {addMessage} from '../../../../webapp-common/core/actions/layout.actions'
 import {IExperimentInfo} from '../../shared/experiment-info.model';
 import {selectSelectedTableExperiment} from '../../../../webapp-common/experiments/reducers';
 import {ITableExperiment} from '../../../../webapp-common/experiments/shared/common-experiment-model.model';
+import {faDatabase, faCodeBranch, faFileExcel, faThList} from '@fortawesome/free-solid-svg-icons';
+
 
 
 @Component({
@@ -125,5 +127,14 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl(parts.join('/'));
     }
     this.toMaximize = true;
+  }
+
+  faDatabase = faDatabase
+  faCodeBranch = faCodeBranch
+  faFileExcel = faFileExcel
+  faThList = faThList
+
+  test() {
+    alert("ALIVE")
   }
 }

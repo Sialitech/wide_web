@@ -33,6 +33,19 @@
     <span [routerLink]="['info-output']" [routerLinkActive]="'disabled'" queryParamsHandling="preserve">
       <sm-navbar-item header="results" [active]="routerConfig.includes('info-output')"></sm-navbar-item>
     </span>
+    <button class="icon-button btn-light" >
+      <fa-icon class="icon" [icon]="faThList"></fa-icon>
+    </button>
+    <button class="icon-button btn-light" >
+      <fa-icon class="icon" [icon]="faDatabase"></fa-icon>
+    </button>   
+    <button class="icon-button btn-light" >
+      <fa-icon class="icon" [icon]="faCodeBranch"></fa-icon>
+    </button>
+    <button class="icon-button btn-light" >
+      <fa-icon class="icon" [icon]="faFileExcel"></fa-icon>
+    </button>
+
   </nav>
   <div class="experiment-info-body" #scrollContainer>
     <router-outlet (activate)="onActivate($event, scrollContainer)"></router-outlet>
