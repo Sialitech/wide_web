@@ -48,6 +48,7 @@
     "ansi-to-html": "^0.7.2",
     "bootstrap": "^4.6.1",
     "britecharts": "^2.18.0",
+    "crypto-js": "^4.1.1",
     "diff": "^5.0.0",
     "has-ansi": "^5.0.1",
     "hocon-parser": "^1.0.1",
