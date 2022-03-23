@@ -33,18 +33,39 @@
     <span [routerLink]="['info-output']" [routerLinkActive]="'disabled'" queryParamsHandling="preserve">
       <sm-navbar-item header="results" [active]="routerConfig.includes('info-output')"></sm-navbar-item>
     </span>
-    <button class="icon-button btn-light" >
+    
+    <input 
+      style="display: none" 
+      type="file" 
+      (change)="onFileSelected($event)"
+      #fileInput>
+
+    <button class="icon-button btn-light" (click)="fileInput.click()">
       <fa-icon class="icon" [icon]="faThList"></fa-icon>
     </button>
+
     <button class="icon-button btn-light" >
       <fa-icon class="icon" [icon]="faDatabase"></fa-icon>
-    </button>   
-    <button class="icon-button btn-light" >
+    </button>
+
+    <button class="icon-button btn-light" (click)="test()">
       <fa-icon class="icon" [icon]="faCodeBranch"></fa-icon>
     </button>
+
     <button class="icon-button btn-light" >
       <fa-icon class="icon" [icon]="faFileExcel"></fa-icon>
     </button>
+
+    <button class="icon-button btn-light" (click)="onUpLoad()" >
+      <fa-icon class="icon" [icon]="faUpload"></fa-icon>
+    </button>
+
+
+<!-- 
+    <angular-file-uploader
+      [config]="afuConfig">
+    </angular-file-uploader> -->
+
 
   </nav>
   <div class="experiment-info-body" #scrollContainer>

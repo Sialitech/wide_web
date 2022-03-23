@@ -16,8 +16,9 @@ import {addMessage} from '../../../../webapp-common/core/actions/layout.actions'
 import {IExperimentInfo} from '../../shared/experiment-info.model';
 import {selectSelectedTableExperiment} from '../../../../webapp-common/experiments/reducers';
 import {ITableExperiment} from '../../../../webapp-common/experiments/shared/common-experiment-model.model';
-import {faDatabase, faCodeBranch, faFileExcel, faThList} from '@fortawesome/free-solid-svg-icons';
-
+import {faDatabase, faCodeBranch, faFileExcel, faThList, faUpload} from '@fortawesome/free-solid-svg-icons';
+import { AngularFileUploaderComponent } from "angular-file-uploader";
+import { HttpClient, HttpEventType} from '@angular/common/http';
 
 
 @Component({
@@ -46,7 +47,8 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private store: Store<IExperimentInfoState>,
-    private route: ActivatedRoute
+    private route: ActivatedRoute, 
+    private http: HttpClient
   ) {
     this.editable$ = this.store.select(selectIsExperimentEditable);
     this.infoData$ = this.store.select(selectExperimentInfoData);
@@ -133,8 +135,46 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   faCodeBranch = faCodeBranch
   faFileExcel = faFileExcel
   faThList = faThList
+  faUpload = faUpload
 
   test() {
     alert("ALIVE")
+
+    fetch("http://127.0.0.1:5000/test")
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
+  
+  // afuConfig = {
+  //   uploadAPI: {
+  //     url:"https://example-file-upload-api"
+  //   }
+  // }
+
+  selectedFiles: File = null;
+
+  onFileSelected(evente){
+    this.selectedFiles = <File>evente.target.files
+  }
+
+  onUpLoad(){
+    var url = 'http://127.0.0.1:5000/files_loder'
+    console.log(this.selectedFiles)
+
+    const file = new FormData()
+    file.append('file', this.selectedFiles[0],);
+    console.log(file)
+    this.http.post(url,file, {
+      reportProgress: true,
+      observe:'events',
+    })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress){
+          console.log('UploadProgress: ' + Math.round(event.loaded / event.total * 100) + '%')
+        }else if(event.type === HttpEventType.Response){
+          console.log(event)
+        }
+      })
   }
 }
