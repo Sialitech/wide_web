@@ -139,11 +139,13 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
 
   test() {
     alert("ALIVE")
+    alert("experimentId" + this.experimentId)
+    alert("projectId" + this.projectId)
 
-    fetch("http://127.0.0.1:5000/test")
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+    // fetch("http://127.0.0.1:5000/test")
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
   }
   
   // afuConfig = {
@@ -152,14 +154,25 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   //   }
   // }
 
+  // selectedFiles: File = null;
+
+  // onFileSelected(evente){
+  //   this.selectedFiles = <File>evente.target.files
+  // }
   selectedFiles: File = null;
 
-  onFileSelected(evente){
-    this.selectedFiles = <File>evente.target.files
+  version_control(){
+    var url = 'http://127.0.0.1:5000/version_control'
+
+    this.http.get(url)
+    .subscribe(response => console.log(response))
+      
   }
 
-  onUpLoad(){
-    var url = 'http://127.0.0.1:5000/files_loder'
+  dataset_upload(evente){
+    var url = 'http://127.0.0.1:5000/dataset_upload'
+
+    this.selectedFiles = <File>evente.target.files
     console.log(this.selectedFiles)
 
     const file = new FormData()
@@ -177,4 +190,38 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
         }
       })
   }
+
+  weight_upload(evente){
+    var url = 'http://127.0.0.1:5000/weight_upload'
+
+    this.selectedFiles = <File>evente.target.files
+    console.log(this.selectedFiles)
+
+    const file = new FormData()
+    file.append('file', this.selectedFiles[0],);
+    console.log(file)
+    this.http.post(url,file, {
+      reportProgress: true,
+      observe:'events',
+    })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress){
+          console.log('UploadProgress: ' + Math.round(event.loaded / event.total * 100) + '%')
+        }else if(event.type === HttpEventType.Response){
+          console.log(event)
+        }
+      })
+  }
+
+  comparison(){
+    var url = 'http://127.0.0.1:5000/comparison'
+
+    this.http.get(url)
+    .subscribe(response => console.log(response))
+
+
+  
+
+
+
 }
