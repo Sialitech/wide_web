@@ -162,7 +162,7 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   selectedFiles: File = null;
 
   version_control(){
-    var url = 'http://127.0.0.1:5000/version_control'
+    var url = 'http://127.0.0.1:5001/version_control'
 
     this.http.get(url)
     .subscribe(response => console.log(response))
@@ -170,7 +170,7 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   }
 
   dataset_upload(evente){
-    var url = 'http://127.0.0.1:5000/dataset_upload'
+    var url = 'http://127.0.0.1:5001/dataset_upload'
 
     this.selectedFiles = <File>evente.target.files
     console.log(this.selectedFiles)
@@ -192,7 +192,7 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   }
 
   weight_upload(evente){
-    var url = 'http://127.0.0.1:5000/weight_upload'
+    var url = 'http://127.0.0.1:5001/weight_upload'
 
     this.selectedFiles = <File>evente.target.files
     console.log(this.selectedFiles)
@@ -214,11 +214,11 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   }
 
   comparison(){
-    var url = 'http://127.0.0.1:5000/comparison'
+    var url = 'http://127.0.0.1:5001/comparison'
 
     this.http.get(url)
     .subscribe(response => console.log(response))
-
+  }
 
   
 
