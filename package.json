@@ -42,6 +42,7 @@
     "@ngrx/router-store": "^12.5.1",
     "@ngrx/store": "^12.5.1",
     "ace-builds": "^1.4.13",
+    "angular-file-uploader": "^7.1.1",
     "angular-google-tag-manager": "^1.4.3",
     "angular-resizable-element": "^4.0.0",
     "angular-split": "^5.0.0",

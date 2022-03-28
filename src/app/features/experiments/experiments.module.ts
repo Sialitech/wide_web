@@ -28,6 +28,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {ExperimentOutputComponent} from './containers/experiment-ouptut/experiment-output.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularFileUploaderModule } from "angular-file-uploader";
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -44,6 +47,8 @@ export const experimentSyncedKeys = [
 
 @NgModule({
   imports: [
+    HttpClientModule,
+    AngularFileUploaderModule,
     FontAwesomeModule,
     SMMaterialModule,
     FormsModule,

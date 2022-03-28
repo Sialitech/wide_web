@@ -33,18 +33,43 @@
     <span [routerLink]="['info-output']" [routerLinkActive]="'disabled'" queryParamsHandling="preserve">
       <sm-navbar-item header="results" [active]="routerConfig.includes('info-output')"></sm-navbar-item>
     </span>
-    <button class="icon-button btn-light" >
+    
+    
+    <button class="icon-button btn-light" (click)="version_control()">
       <fa-icon class="icon" [icon]="faThList"></fa-icon>
     </button>
-    <button class="icon-button btn-light" >
+    
+    <input 
+      style="display: none" 
+      type="file" 
+      (change)="dataset_upload($event)"
+      #datasetUpload
+    >
+    <button class="icon-button btn-light" (click)="datasetUpload.click()" >
       <fa-icon class="icon" [icon]="faDatabase"></fa-icon>
-    </button>   
-    <button class="icon-button btn-light" >
+    </button>
+
+    <input 
+    style="display: none" 
+    type="file" 
+    (change)="weight_upload($event)"
+    #weightUpload
+    >
+    <button class="icon-button btn-light" (click)="weightUpload.click()">
       <fa-icon class="icon" [icon]="faCodeBranch"></fa-icon>
     </button>
-    <button class="icon-button btn-light" >
+
+    <button class="icon-button btn-light" (click)="comparison()">
       <fa-icon class="icon" [icon]="faFileExcel"></fa-icon>
     </button>
+
+
+
+<!-- 
+    <angular-file-uploader
+      [config]="afuConfig">
+    </angular-file-uploader> -->
+
 
   </nav>
   <div class="experiment-info-body" #scrollContainer>
