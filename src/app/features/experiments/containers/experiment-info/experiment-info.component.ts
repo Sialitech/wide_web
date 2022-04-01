@@ -16,6 +16,8 @@ import {addMessage} from '../../../../webapp-common/core/actions/layout.actions'
 import {IExperimentInfo} from '../../shared/experiment-info.model';
 import {selectSelectedTableExperiment} from '../../../../webapp-common/experiments/reducers';
 import {ITableExperiment} from '../../../../webapp-common/experiments/shared/common-experiment-model.model';
+
+// new imports
 import {faDatabase, faCodeBranch, faFileExcel, faThList, faUpload} from '@fortawesome/free-solid-svg-icons';
 import { AngularFileUploaderComponent } from "angular-file-uploader";
 import { HttpClient, HttpEventType} from '@angular/common/http';
@@ -131,38 +133,37 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
     this.toMaximize = true;
   }
 
+  // So.
+  // From here all the code you will find is new.
+
+
+//  here are the "fontawesome" icons, if you want to change the icons you will have to 
+//  first import them here and declare them in the new imports and then use them in HTML.
+//  don't need to install anything, it's already in package.json
   faDatabase = faDatabase
   faCodeBranch = faCodeBranch
   faFileExcel = faFileExcel
   faThList = faThList
   faUpload = faUpload
 
+  //test function made to check if the buttons in the html were being triggered correctly
   test() {
     alert("ALIVE")
     alert("experimentId" + this.experimentId)
     alert("projectId" + this.projectId)
-
-    // fetch("http://127.0.0.1:5000/test")
-    //   .then(response => response.text())
-    //   .then(result => console.log(result))
-    //   .catch(error => console.log('error', error));
   }
-  
-  // afuConfig = {
-  //   uploadAPI: {
-  //     url:"https://example-file-upload-api"
-  //   }
-  // }
 
-  // selectedFiles: File = null;
-
-  // onFileSelected(evente){
-  //   this.selectedFiles = <File>evente.target.files
-  // }
+  //just leave it here, it is necessary so that the function that uploads files can work
   selectedFiles: File = null;
 
   version_control(){
-    var url = 'http://127.0.0.1:5001/version_control'
+
+    // has the url variable declared for the current configuration of port 5000 of the new backend module.
+    // still need to finish and define the methods to be used in the backend, the parameters to be sent 
+    // will depend on the implementation that will be done.
+    // I particularly think that it will be necessary to create a new view to be able to perform this function properly
+
+    var url = 'http://127.0.0.1:5000/version_control'
 
     this.http.get(url)
     .subscribe(response => console.log(response))
@@ -170,7 +171,7 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   }
 
   dataset_upload(evente){
-    var url = 'http://127.0.0.1:5001/dataset_upload'
+    var url = 'http://127.0.0.1:5000/dataset_upload'
 
     this.selectedFiles = <File>evente.target.files
     console.log(this.selectedFiles)
@@ -192,7 +193,7 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   }
 
   weight_upload(evente){
-    var url = 'http://127.0.0.1:5001/weight_upload'
+    var url = 'http://127.0.0.1:5000/weight_upload'
 
     this.selectedFiles = <File>evente.target.files
     console.log(this.selectedFiles)
@@ -214,7 +215,7 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   }
 
   comparison(){
-    var url = 'http://127.0.0.1:5001/comparison'
+    var url = 'http://127.0.0.1:5000/comparison'
 
     this.http.get(url)
     .subscribe(response => console.log(response))
