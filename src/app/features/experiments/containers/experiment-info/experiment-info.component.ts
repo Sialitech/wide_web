@@ -170,16 +170,20 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
       
   }
 
+
+  //To more information about this module go to =>  https://blog.angular-university.io/angular-http/
   dataset_upload(evente){
-    var url = 'http://127.0.0.1:5000/dataset_upload'
+    var url = 'http://127.0.0.1:5000'
 
     this.selectedFiles = <File>evente.target.files
     console.log(this.selectedFiles)
 
     const file = new FormData()
     file.append('file', this.selectedFiles[0],);
-    console.log(file)
-    this.http.post(url,file, {
+
+    console.log('next request')
+
+    this.http.post(url+'/dataset_upload',file, {
       reportProgress: true,
       observe:'events',
     })
@@ -190,6 +194,8 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
           console.log(event)
         }
       })
+    console.log('<<<<<<<<<<<<<<<<>>>>>>next request')
+
   }
 
   weight_upload(evente){
@@ -201,6 +207,8 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
     const file = new FormData()
     file.append('file', this.selectedFiles[0],);
     console.log(file)
+
+
     this.http.post(url,file, {
       reportProgress: true,
       observe:'events',
