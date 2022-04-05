@@ -176,6 +176,8 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
     // var url = 'http://127.0.0.1:5000'
     var url = window.location.hostname+ ':5000'
 
+    alert(url)
+
     const my_id : any = {
       'experimentId' : this.experimentId,
       'projectId' : this.projectId,
