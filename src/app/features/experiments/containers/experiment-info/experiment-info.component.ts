@@ -170,26 +170,42 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
       
   }
 
-  dataset_upload(evente){
-    var url = 'http://127.0.0.1:5000/dataset_upload'
+
+  //To more information about this module go to =>  https://blog.angular-university.io/angular-http/
+  async dataset_upload(evente){
+    // var url = 'http://127.0.0.1:5000'
+    var url = window.location.hostname+ ':5000'
+
+    alert(url)
+
+    const my_id : any = {
+      'experimentId' : this.experimentId,
+      'projectId' : this.projectId,
+    }
+    this.http.post(url + '/dataset2artefact', my_id)
+    .subscribe(response => console.log(response))
 
     this.selectedFiles = <File>evente.target.files
     console.log(this.selectedFiles)
 
     const file = new FormData()
     file.append('file', this.selectedFiles[0],);
-    console.log(file)
-    this.http.post(url,file, {
+    //const upload: any = await 
+
+    this.http.post(url + '/dataset_upload',file, {
       reportProgress: true,
-      observe:'events',
+      observe:'events'
     })
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress){
-          console.log('UploadProgress: ' + Math.round(event.loaded / event.total * 100) + '%')
-        }else if(event.type === HttpEventType.Response){
-          console.log(event)
-        }
-      })
+    .subscribe(event => {
+    if (event.type === HttpEventType.UploadProgress){
+      console.log('UploadProgress: ' + Math.round(event.loaded / event.total * 100) + '%')
+    }else if(event.type === HttpEventType.Response){
+      console.log(event)
+    }
+    })
+
+    //.toPromise();
+
   }
 
   weight_upload(evente){
@@ -201,6 +217,8 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
     const file = new FormData()
     file.append('file', this.selectedFiles[0],);
     console.log(file)
+
+
     this.http.post(url,file, {
       reportProgress: true,
       observe:'events',
