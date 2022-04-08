@@ -172,7 +172,7 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
 
 
   //To more information about this module go to =>  https://blog.angular-university.io/angular-http/
-  async dataset_upload(evente){
+  dataset_upload(evente){
     var url = 'http://127.0.0.1:5000'
     //var url = window.location.hostname+ ':5000'
 
