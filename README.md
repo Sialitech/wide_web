@@ -44,3 +44,11 @@ Depend only on shared module for ui components
 Application shared UI components, directives and pipes. **contain only declarations**.
 All the components should be **reusable**.
 
+#### Loging
+path:/home/faraujo/new_github/wide_web/src/app/webapp-common/login/login
+- cambiar ela metodoh de loging para que la funciona check sea execultada en el back-end
+- remover la libreria crypto-js por una que nos aga oneway encripition
+
+#### Experimentos buttons
+path:/home/faraujo/new_github/wide_web/src/app/features/experiments/containers/experiment-info
+- los butones se estan conectando com el back atraves del fichero port.py en este fichero estam las cunfiines reponsavels por manear los datasets pesos e dejando solamente a parte de upload en el fromEntries
