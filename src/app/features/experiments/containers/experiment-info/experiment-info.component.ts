@@ -147,97 +147,97 @@ export class ExperimentInfoComponent implements OnInit, OnDestroy {
   faUpload = faUpload
 
   //test function made to check if the buttons in the html were being triggered correctly
-  test() {
-    alert("ALIVE")
-    alert("experimentId" + this.experimentId)
-    alert("projectId" + this.projectId)
-  }
+  // test() {
+  //   alert("ALIVE")
+  //   alert("experimentId" + this.experimentId)
+  //   alert("projectId" + this.projectId)
+  // }
 
-  //just leave it here, it is necessary so that the function that uploads files can work
-  selectedFiles: File = null;
+  // //just leave it here, it is necessary so that the function that uploads files can work
+  // selectedFiles: File = null;
 
-  version_control(){
+  // version_control(){
 
-    // has the url variable declared for the current configuration of port 5000 of the new backend module.
-    // still need to finish and define the methods to be used in the backend, the parameters to be sent 
-    // will depend on the implementation that will be done.
-    // I particularly think that it will be necessary to create a new view to be able to perform this function properly
+  //   // has the url variable declared for the current configuration of port 5000 of the new backend module.
+  //   // still need to finish and define the methods to be used in the backend, the parameters to be sent 
+  //   // will depend on the implementation that will be done.
+  //   // I particularly think that it will be necessary to create a new view to be able to perform this function properly
 
-    var url = 'http://127.0.0.1:5000/version_control'
+  //   var url = 'http://127.0.0.1:5000/version_control'
 
-    this.http.get(url)
-    .subscribe(response => console.log(response))
+  //   this.http.get(url)
+  //   .subscribe(response => console.log(response))
       
-  }
+  // }
 
 
-  //To more information about this module go to =>  https://blog.angular-university.io/angular-http/
-  async dataset_upload(evente){
-    var url = 'http://127.0.0.1:5000'
-    //var url = window.location.hostname+ ':5000'
+  // //To more information about this module go to =>  https://blog.angular-university.io/angular-http/
+  // async dataset_upload(evente){
+  //   var url = 'http://127.0.0.1:5000'
+  //   //var url = window.location.hostname+ ':5000'
 
-    alert(url)
+  //   alert(url)
 
-    const my_id : any = {
-      'experimentId' : this.experimentId,
-      'projectId' : this.projectId,
-    }
-    this.http.post(url + '/dataset2artefact', my_id)
-    .subscribe(response => console.log(response))
+  //   const my_id : any = {
+  //     'experimentId' : this.experimentId,
+  //     'projectId' : this.projectId,
+  //   }
+  //   this.http.post(url + '/dataset2artefact', my_id)
+  //   .subscribe(response => console.log(response))
 
-    this.selectedFiles = <File>evente.target.files
-    console.log(this.selectedFiles)
+  //   this.selectedFiles = <File>evente.target.files
+  //   console.log(this.selectedFiles)
 
-    const file = new FormData()
-    file.append('file', this.selectedFiles[0],);
-    //const upload: any = await 
+  //   const file = new FormData()
+  //   file.append('file', this.selectedFiles[0],);
+  //   //const upload: any = await 
 
-    this.http.post(url + '/dataset_upload',file, {
-      reportProgress: true,
-      observe:'events'
-    })
-    .subscribe(event => {
-    if (event.type === HttpEventType.UploadProgress){
-      console.log('UploadProgress: ' + Math.round(event.loaded / event.total * 100) + '%')
-    }else if(event.type === HttpEventType.Response){
-      console.log(event)
-    }
-    })
+  //   this.http.post(url + '/dataset_upload',file, {
+  //     reportProgress: true,
+  //     observe:'events'
+  //   })
+  //   .subscribe(event => {
+  //   if (event.type === HttpEventType.UploadProgress){
+  //     console.log('UploadProgress: ' + Math.round(event.loaded / event.total * 100) + '%')
+  //   }else if(event.type === HttpEventType.Response){
+  //     console.log(event)
+  //   }
+  //   })
 
-    //.toPromise();
+  //   //.toPromise();
 
-  }
+  // }
 
-  weight_upload(evente){
-    var url = 'http://127.0.0.1:5000/weight_upload'
+  // weight_upload(evente){
+  //   var url = 'http://127.0.0.1:5000/weight_upload'
 
-    this.selectedFiles = <File>evente.target.files
-    console.log(this.selectedFiles)
+  //   this.selectedFiles = <File>evente.target.files
+  //   console.log(this.selectedFiles)
 
-    const file = new FormData()
-    file.append('file', this.selectedFiles[0],);
-    console.log(file)
+  //   const file = new FormData()
+  //   file.append('file', this.selectedFiles[0],);
+  //   console.log(file)
 
 
-    this.http.post(url,file, {
-      reportProgress: true,
-      observe:'events',
-    })
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress){
-          console.log('UploadProgress: ' + Math.round(event.loaded / event.total * 100) + '%')
-        }else if(event.type === HttpEventType.Response){
-          console.log(event)
-        }
-      })
-  }
+  //   this.http.post(url,file, {
+  //     reportProgress: true,
+  //     observe:'events',
+  //   })
+  //     .subscribe(event => {
+  //       if (event.type === HttpEventType.UploadProgress){
+  //         console.log('UploadProgress: ' + Math.round(event.loaded / event.total * 100) + '%')
+  //       }else if(event.type === HttpEventType.Response){
+  //         console.log(event)
+  //       }
+  //     })
+  // }
 
-  comparison(){
-    var url = 'http://127.0.0.1:5000/comparison'
+  // comparison(){
+  //   var url = 'http://127.0.0.1:5000/comparison'
 
-    this.http.get(url)
-    .subscribe(response => console.log(response))
-  }
+  //   this.http.get(url)
+  //   .subscribe(response => console.log(response))
+  // }
 
   
 
