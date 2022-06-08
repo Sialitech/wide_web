@@ -16,7 +16,7 @@
     (experimentNameChanged)="updateExperimentName($event)"
   >
   </sm-experiment-info-header>
-  <!-- 
+ 
 <nav>
     <span routerLink="execution" [routerLinkActive]="'disabled'" queryParamsHandling="merge">
       <sm-navbar-item header="execution" [active]="routerConfig.includes('execution')"></sm-navbar-item>
@@ -34,15 +34,7 @@
     <span [routerLink]="['info-output']" [routerLinkActive]="'disabled'" queryParamsHandling="preserve">
       <sm-navbar-item header="results" [active]="routerConfig.includes('info-output')"></sm-navbar-item>
     </span>
-    
-
-
-    <angular-file-uploader
-      [config]="afuConfig">
-    </angular-file-uploader> 
-
-
-  </nav> -->
+  </nav>
   <div class="experiment-info-body" #scrollContainer>
     <router-outlet (activate)="onActivate($event, scrollContainer)"></router-outlet>
   </div>
