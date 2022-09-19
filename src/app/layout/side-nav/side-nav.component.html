@@ -1,85 +1,67 @@
 <!-- DON'T FORGET TO ADD LINK TO 404 PAGE TOO -->
 
 <div class="side-nav">
-  <div class="item logo">
-    <div class="item-icon">
-      <!-- <img src="../../../assets/c-logo.svg?v=1" class="logo-a"> -->
+    <div class="item logo">
+        <div class="item-icon">
+            <!-- <img src="../../../assets/c-logo.svg?v=1" class="logo-a"> -->
+        </div>
+        <div class="caption">
+            <!--      <img src="../../../assets/logo-white.png" class="logo-full">-->
+        </div>
     </div>
-    <div class="caption">
-<!--      <img src="../../../assets/logo-white.png" class="logo-full">-->
+
+    <ng-container *ngIf="currentUser">
+        <a class="item d-block" #rlaHome="routerLinkActive" routerLink="/dashboard" routerLinkActive (click)="resetSearch()" smTooltip="DASHBOARD" showDelay="0" matTooltipPosition="right">
+            <div class="item-icon">
+                <i [class]="'al-icon al-ico-home al-color ' + (rlaHome.isActive ? 'neon-yellow': 'blue-300')"></i>
+            </div>
+            <div class="caption">dashboard</div>
+        </a>
+
+        <a class="item d-block" smTooltip="PROJECTS" showDelay="0" matTooltipPosition="right" routerLink="/projects" [routerLinkActive] #rlaProjects="routerLinkActive">
+            <div class="item-icon">
+                <i [class]="'al-icon al-ico-projects al-color ' + (rlaProjects.isActive ? 'neon-yellow': 'blue-300')"></i>
+            </div>
+            <div class="caption">projects</div>
+        </a>
+        <a class="item d-block" *smCheckPermission="true" routerLink="/workers-and-queues" routerLinkActive #rlaQueues="routerLinkActive" smTooltip="WORKERS & QUEUES" showDelay="0" matTooltipPosition="right">
+            <div class="item-icon">
+                <i [class]="'al-icon al-ico-queues al-color ' + (rlaQueues.isActive ? 'neon-yellow': 'blue-300')"></i>
+            </div>
+            <div class="caption">workers & queues</div>
+        </a>
+
+        <a class="item d-block" href="http://20.4.66.169:2000/experimentos" target="_blank" smTooltip="Experimentos" showDelay="0" matTooltipPosition="right">
+            <div class="item-icon">
+                <i class="fas fa-flask fa-24 al-color blue-300"></i>
+            </div>
+            <div class="caption">Experimentos Laboratorio</div>
+        </a>
+        <a class="item d-block" href="http://20.4.66.169:2000/docker" target="_blank" smTooltip="Docker" showDelay="0" matTooltipPosition="right">
+            <div class="item-icon">
+                <i class="fab fa-docker fa-24 al-color blue-300"></i>
+            </div>
+            <div class="caption">Docker</div>
+        </a>
+        <a class="item d-block" href="https://www.youtube.com/playlist?list=PLO3Vn80qdQs9o6AsdmTQljkTV10CYTKqy" target="_blank" smTooltip="Documentacion" showDelay="0" matTooltipPosition="right">
+            <div class="item-icon">
+                <i class="fas fa-book fa-24 al-color blue-300"></i>
+            </div>
+            <div class="caption">Documentacion WIDE</div>
+        </a>
+
+    </ng-container>
+    <div *ngIf="currentUser" class="account">
+        <a *ngIf="environment.whiteLabelLink" class="item d-block" target="_blank" [smTooltip]="environment.whiteLabelLink.tooltip" showDelay="0" matTooltipPosition="right" [href]="environment.whiteLabelLink.link">
+            <div class="item-icon" [style.background-image]="'url(' + environment.whiteLabelLink.logo + ')'" style="width: 64px; height: 64px">
+            </div>
+            <div class="caption">Ignite</div>
+        </a>
+        <a class="item d-block" href="https://github.com/allegroai/clearml" target="_blank" smTooltip="GitHub Repository" showDelay="0" matTooltipPosition="right">
+            <div class="item-icon">
+                <i class="fab fa-github fa-24 al-color blue-300"></i>
+            </div>
+            <div class="caption">GitHub</div>
+        </a>
     </div>
-  </div>
-
-  <ng-container *ngIf="currentUser">
-    <a class="item d-block" #rlaHome="routerLinkActive" routerLink="/dashboard" routerLinkActive (click)="resetSearch()"
-      smTooltip="DASHBOARD" showDelay="0" matTooltipPosition="right">
-      <div class="item-icon">
-        <i [class]="'al-icon al-ico-home al-color ' + (rlaHome.isActive ? 'neon-yellow': 'blue-300')" ></i>
-      </div>
-      <div class="caption">dashboard</div>
-    </a>
-
-    <a class="item d-block" smTooltip="PROJECTS" showDelay="0" matTooltipPosition="right" routerLink="/projects"
-      [routerLinkActive] #rlaProjects="routerLinkActive">
-      <div class="item-icon">
-        <i [class]="'al-icon al-ico-projects al-color ' + (rlaProjects.isActive ? 'neon-yellow': 'blue-300')" ></i>
-      </div>
-      <div class="caption">projects</div>
-    </a>
-    <a class="item d-block"
-       *smCheckPermission="true"
-       routerLink="/workers-and-queues"
-       routerLinkActive
-       #rlaQueues="routerLinkActive"
-       smTooltip="WORKERS & QUEUES"
-       showDelay="0"
-       matTooltipPosition="right">
-      <div class="item-icon">
-        <i [class]="'al-icon al-ico-queues al-color ' + (rlaQueues.isActive ? 'neon-yellow': 'blue-300')" ></i>
-      </div>
-      <div class="caption">workers & queues</div>
-    </a>
- 
-    <a class="item d-block" href="http://20.4.66.169:2000/experimentos" target="_blank"
-       smTooltip="Experimentos" showDelay="0" matTooltipPosition="right">
-      <div class="item-icon">
-        <i class="fas fa-flask fa-24 al-color blue-300"></i>
-      </div>
-      <div class="caption">Experimentos Laboratorio</div>
-    </a> 
-    <a class="item d-block" href="http://20.4.66.169:2000/experimentos" target="_blank"
-       smTooltip="Docker" showDelay="0" matTooltipPosition="right">
-      <div class="item-icon">
-        <i class="fab fa-docker fa-24 al-color blue-300"></i>
-      </div>
-      <div class="caption">Docker</div>
-    </a> 
-    <a class="item d-block" href="https://www.youtube.com/playlist?list=PLO3Vn80qdQs9o6AsdmTQljkTV10CYTKqy" target="_blank"
-       smTooltip="Documentacion" showDelay="0" matTooltipPosition="right">
-      <div class="item-icon">
-        <i class="fas fa-book fa-24 al-color blue-300"></i>
-      </div>
-      <div class="caption">Documentacion WIDE</div>
-    </a>
-
-  </ng-container>
-  <div *ngIf="currentUser" class="account">
-    <a *ngIf="environment.whiteLabelLink" class="item d-block" target="_blank"
-       [smTooltip]="environment.whiteLabelLink.tooltip" showDelay="0" matTooltipPosition="right"
-       [href]="environment.whiteLabelLink.link">
-      <div class="item-icon"
-           [style.background-image]="'url(' + environment.whiteLabelLink.logo + ')'"
-           style="width: 64px; height: 64px"
-      >
-      </div>
-      <div class="caption">Ignite</div>
-    </a>
-    <a class="item d-block" href="https://github.com/allegroai/clearml" target="_blank"
-       smTooltip="GitHub Repository" showDelay="0" matTooltipPosition="right">
-      <div class="item-icon">
-        <i class="fab fa-github fa-24 al-color blue-300"></i>
-      </div>
-      <div class="caption">GitHub</div>
-    </a> 
-  </div>
 </div>
