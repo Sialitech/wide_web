@@ -155,8 +155,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   "admin":"U2FsdGVkX1+o/uYhZr3Uah6RYZvPw5GkyIddLo4zccQ=",
   "test": "U2FsdGVkX18ugMK2vEv87r4lpUiX1UhxjDRaEIu9hRI=",
   "user": "U2FsdGVkX1+5V/4wRr7vB3/9+xM8THiUH82G7RyqhUc=",
-  "pilar":"U2FsdGVkX1/I4BhrXdCYoojwZC6lOuWny/j19bJWxDM=",
-  "mamartint":"0AEE8B1C940B1235EADDB711401CF265"
+  "pilar":"U2FsdGVkX1/I4BhrXdCYoojwZC6lOuWny/j19bJWxDM="
 }
   
 
